@@ -106,10 +106,6 @@ deploy:
   branch: main
 
 # Math render
-# math:
-#   katex:
-#     enable: true
-
 markdown_it_plus:
   plugins:
     - plugin:
