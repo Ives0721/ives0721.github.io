@@ -116,7 +116,7 @@ markdown_it_plus:
       enable: true
 
 giscus:
-  enable: false
+  enable: true
   repo: Ives0721/ives0721.github.io
   repo_id: R_kgDOMb17DQ
   category: "Announcements"
