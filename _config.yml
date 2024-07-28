@@ -103,7 +103,7 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/Ives0721/ives0721.github.io
-  branch: gh-pages
+  branch: main
 
 # Math render
 # math:
