@@ -71,7 +71,7 @@ Chapman-Enskog展开（下文简称C-E展开）是处理Boltzmann方程的一种
 
 $$f = \sum_{n=0}^{\infty} \varepsilon^n f^{(n)}  \tag{8}$$
 
-并将分布函数、导数、物理量等都按照$\varepsilon$的不同阶次展开。该方法对 $f^{(n)}$ 进行了限制，使其满足：$∫f^{(n)} φ_i  \mathrm{d}ξ=0$， $φ_i (i=1,..,5)$ 为基本碰撞不变量。将 $f$ 视为 $\rho$ 、$\mathbf{u}$ 和 $T$ 及其各阶导数的泛函，而时间偏导项则展开为
+并将分布函数、导数、物理量等都按照$\varepsilon$的不同阶次展开。该方法对 $f^{(n)}$ 进行了限制，使其满足：$\int f^{(n)} φ_i \mathrm{d}ξ=0$， $φ_i (i=1,..,5)$ 为基本碰撞不变量。将 $f$ 视为 $\rho$ 、$\mathbf{u}$ 和 $T$ 及其各阶导数的泛函，而时间偏导项则展开为
 
 $$\frac{\partial }{\partial t} = \sum_{n=0}^{\infty }  \frac{\partial _n}{\partial t}  \tag{9}$$
 
@@ -221,11 +221,23 @@ $$
 
 将(A-1.1)式在 $(\mathbf{x} , t)$处展开，取至 2 阶项得：
 
-$$Δt \frac{∂f_i}{\partial t} + ξ_i Δt ⋅ \frac{∂f_i}{∂x} + \frac{1}{2} \left[Δt^2 \frac{∂^2 f_i}{\partial t^2} + 2Δt(\xi_i Δt) ⋅ \frac{∂^2 f_i}{\partial t∂x} + Δt^2 (\xi_i \xi_i): \frac{∂^2 f_i}{∂x^2}  \right] + \frac{1}{\tau } \left[f_i - f_i^{(eq)} \right] - Δt F_i=0  \tag{A-2}$$ 
+$$
+\begin{aligned}
+\Delta t \frac{\partial f_i}{\partial t} + ξ_i \Delta t ⋅ \frac{\partial f_i}{∂x} + &\\
+\frac{1}{2} \left[\Delta t^2 \frac{\partial^2 f_i}{\partial t^2} + 2\Delta t(\xi_i \Delta t) ⋅ \frac{\partial^2 f_i}{\partial t∂x} + \Delta t^2 (\xi_i \xi_i): \frac{\partial^2 f_i}{∂x^2}  \right] + &\\
+\frac{1}{\tau } \left[f_i - f_i^{(eq)} \right] - \Delta t F_i &= 0  \tag{A-2}
+\end{aligned}
+$$ 
 
 代入多尺度展开等式，并舍去 $\varepsilon^3$ 项和更高阶的项，可得：
 
-$$(ε \frac{∂f_i^{(0)}}{\partial t_1} + ε^2 \frac{∂f_i^{(1)}}{\partial t_1} + ε^2  \frac{∂f_i^{(0)}}{\partial t_2} ) + \xi_i ⋅ (\varepsilon \frac{∂f_i^{(0)}}{∂x_1} + \varepsilon^2  \frac{∂f_i^{(0)}}{∂x_1}) +  \frac{Δt}{2} \left[ \varepsilon^2 \frac{∂^2 f_i^{(0)}}{\partial t_1^2} + 2 \xi_i \varepsilon^2 ⋅ \frac{∂^2 f_i^{(0)}}{\partial t_1 ∂x_1} + (\xi_i \xi_i) :  (\varepsilon^2 \frac{∂^2 f_i^{(0)}}{∂x^2} ) \right] +  \frac{1}{τΔt} \left[ f_i^{(0)} + \varepsilon f_i^{(1)} + \varepsilon^2 f_i^{(2)}  -f_i^{(eq)} \right] - \varepsilon F_i^{(1)} + O(\varepsilon^3 )=0   \tag{A-3}$$ 
+$$
+\begin{aligned}
+    (\varepsilon \frac{\partial f_i^{(0)}}{\partial t_1} + \varepsilon^2 \frac{\partial f_i^{(1)}}{\partial t_1} + \varepsilon^2  \frac{\partial f_i^{(0)}}{\partial t_2} ) + \xi_i ⋅ (\varepsilon \frac{\partial f_i^{(0)}}{\partial x_1} + \varepsilon^2  \frac{\partial f_i^{(0)}}{\partial x_1}) + &\\
+    \frac{Δt}{2} \left[ \varepsilon^2 \frac{\partial^2 f_i^{(0)}}{\partial t_1^2} + 2 \xi_i \varepsilon^2 ⋅ \frac{\partial^2 f_i^{(0)}}{\partial t_1 \partial x_1} + (\xi_i \xi_i) :  (\varepsilon^2 \frac{\partial^2 f_i^{(0)}}{\partial x^2} ) \right] &\\
+    +  \frac{1}{τΔt} \left[ f_i^{(0)} + \varepsilon f_i^{(1)} + \varepsilon^2 f_i^{(2)}  -f_i^{(eq)} \right] - \varepsilon F_i^{(1)} + O(\varepsilon^3 ) &=0   \tag{A-3}
+\end{aligned}
+$$ 
 
 从(A-3)式中提取$O({\varepsilon}^0)$项、$O({\varepsilon}^1)$项和$O({\varepsilon}^2)$项，并令 $D_k = \frac{\partial}{\partial t_k} + \xi_k \cdot \frac{\partial}{\partial \mathbf{x}_k}$  。(A-3)式对任意 $\varepsilon$ 都成立，则关于各阶的系数均为0，即：
 
