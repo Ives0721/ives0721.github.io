@@ -2,6 +2,8 @@
 title: 从格子Boltzmann方程到宏观流体问题的常用还原方法
 date: 2023-04-08 17:51
 tags: [格子Boltzmann方法]
+categories:
+- [格子Boltzmann方法]
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 

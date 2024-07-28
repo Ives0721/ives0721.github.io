@@ -5,7 +5,7 @@
 # Site
 title: Ives's Pages
 subtitle: ''
-description: ''
+description: '随便 Po 帖子的Github Page而已 ，just 4 fun.'
 keywords:
 author: Ives0721
 language: zh-CN
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://ives0721.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
