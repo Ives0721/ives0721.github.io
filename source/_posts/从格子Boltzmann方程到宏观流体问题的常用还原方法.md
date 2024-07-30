@@ -7,11 +7,12 @@ categories:
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
+{% note default %}
 这是我之前的一次期末大报告作业，里面的内容也算是从其他文章里搬运的，在此重新誊抄出来。内容如有错误，欢迎各位指正。
-
 
 [注] 1. 下文提到的 $x$ 、 $u$ 和 $\xi$ 无论有没有加粗均为向量。  
 2. 本文已经同步发表在本人的[知乎](https://zhuanlan.zhihu.com/p/476380996)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/130032260?spm=1001.2014.3001.5501)上，可在其他网站获得同样的阅读效果。
+{% endnote %}
 
 ## 一、 单松弛格子Boltzmann方程
 ### 1.1		Boltzmann方程

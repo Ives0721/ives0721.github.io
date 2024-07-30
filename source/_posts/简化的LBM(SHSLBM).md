@@ -7,11 +7,13 @@ categories:
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
+{% note default %}
 **注：该文章同步发在[知乎专栏](https://zhuanlan.zhihu.com/p/695671429?)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/138388248?spm=1001.2014.3001.5502)**
 
-> 这里所说的 “简化的格子 Boltzmann 方法” 其实是 ***Simplified and Highly Stable Lattice Boltzmann Method (SHSLBM)***([^1],[^2],[^3],[^4])。该方法的特色是仅使用平衡态分布函数、宏观密度、宏观速度进行 LBM 计算，并保证无条件稳定。
->
-> **下面的内容只是我对相关文献进行简单阅读后的部分整理**
+这里所说的 “简化的格子 Boltzmann 方法” 其实是 ***Simplified and Highly Stable Lattice Boltzmann Method (SHSLBM)***([^1],[^2],[^3],[^4])。该方法的特色是仅使用平衡态分布函数、宏观密度、宏观速度进行 LBM 计算，并保证无条件稳定。
+
+**下面的内容只是我对相关文献进行简单阅读后的部分整理**
+{% endnote %}
 
 ## 单松弛格子 Boltzmann 方法
 
