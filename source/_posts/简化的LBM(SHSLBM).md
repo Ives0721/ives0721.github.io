@@ -7,13 +7,11 @@ categories:
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-{% note default %}
-**注：该文章同步发在[知乎专栏](https://zhuanlan.zhihu.com/p/695671429?)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/138388248?spm=1001.2014.3001.5502)**
 
-这里所说的 “简化的格子 Boltzmann 方法” 其实是 ***Simplified and Highly Stable Lattice Boltzmann Method (SHSLBM)***([^1],[^2],[^3],[^4])。该方法的特色是仅使用平衡态分布函数、宏观密度、宏观速度进行 LBM 计算，并保证无条件稳定。
+> **注：该文章同步发在[知乎专栏](https://zhuanlan.zhihu.com/p/695671429?)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/138388248?spm=1001.2014.3001.5502)**  
+> 这里所说的 “简化的格子 Boltzmann 方法” 其实是 ***Simplified and Highly Stable Lattice Boltzmann Method (SHSLBM)***([^c_1], [^2], [^3], [^4])。该方法的特色是仅使用平衡态分布函数、宏观密度、宏观速度进行 LBM 计算，并保证无条件稳定。  
+> **下面的内容只是我对相关文献进行简单阅读后的部分整理**
 
-**下面的内容只是我对相关文献进行简单阅读后的部分整理**
-{% endnote %}
 
 ## 单松弛格子 Boltzmann 方法
 
@@ -422,7 +420,7 @@ $$
 
 
 
-[^1]: Chen, Z., Shu, C., Wang, Y., Yang, L. M., & Tan, D. (2017). A Simplified Lattice Boltzmann Method without Evolution of Distribution Function. Advances in Applied Mathematics and Mechanics, 9(1), 1–22. DOI:10.4208/aamm.OA-2016-0029
+[^c_1]: Chen, Z., Shu, C., Wang, Y., Yang, L. M., & Tan, D. (2017). A Simplified Lattice Boltzmann Method without Evolution of Distribution Function. Advances in Applied Mathematics and Mechanics, 9(1), 1–22. DOI:10.4208/aamm.OA-2016-0029
 
 [^2]: Z. Chen, C. Shu, D. Tan; Three-dimensional simplified and unconditionally stable lattice Boltzmann method for incompressible isothermal and thermal flows. Physics of Fluids. 1 May 2017; 29 (5): 053601. DOI:10.1063/1.4983339 
 
