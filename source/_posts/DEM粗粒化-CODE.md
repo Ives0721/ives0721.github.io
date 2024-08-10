@@ -221,7 +221,7 @@ class CG_mono_3D:
         self._domain_init = False
 
         # => Max search width
-        self._MAX_width = 6
+        self._MAX_width = 7
 
         # => Option to show progress bar
         self._use_tqdm = progress_bar
@@ -546,7 +546,7 @@ class CG_mono_3D:
         return self._use_tqdm
 
     @progress_bar.setter
-    def _set_tqdm(self, value: bool):
+    def progress_bar(self, value: bool):
         self._use_tqdm = bool(value)
     
     @property
@@ -557,7 +557,7 @@ class CG_mono_3D:
         return self._MAX_width
     
     @search_width_coef.setter
-    def _set_MAX_width(self, value: float):
+    def search_width_coef(self, value: float):
         if value <= 0:
             raise ValueError("`search_width_coef` should be positive")
         elif value <= 3:
