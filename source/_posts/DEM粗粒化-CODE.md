@@ -126,6 +126,35 @@ def SIGMA_q_c(F_ij: npt.NDArray[np.double],
     return res
 
 
+@nb.jit("f8[:](f8[:], f8[:], f8[:,:], b1, b1[:])",
+        nopython=True)
+def get_distance(R: npt.NDArray[np.double],
+                 r_i: npt.NDArray[np.double],
+                 lims: npt.NDArray[np.double],
+                 hasPeriodic: bool,
+                 isPeriodic: npt.NDArray[np.bool_]):
+    dR = r_i - R
+    if hasPeriodic:
+        for q in range(3):
+            if not isPeriodic[q]:
+                continue
+            # Deal with periodic boundary
+            _r_2L = abs(r_i[q] - lims[q,0])
+            _r_2R = abs(r_i[q] - lims[q,1])
+            _R_2L = abs(R[q] - lims[q,0])
+            _R_2R = abs(R[q] - lims[q,1])
+            r_near_left = _r_2L < _r_2R
+            R_near_left = _R_2L < _R_2R
+            r2R = abs(dR[q])
+            if R_near_left and (not r_near_left):
+                tmp = _r_2R + _R_2L
+                if tmp < r2R: dR[q] = -tmp
+            elif (not R_near_left) and r_near_left:
+                tmp = _r_2L + _R_2R
+                if tmp < r2R: dR[q] = tmp
+    return dR   
+
+
 class CG_mono_3D:
     def __init__(self,
                  rho: float, 
@@ -176,8 +205,6 @@ class CG_mono_3D:
         """
         self.particle_num = pos.shape[0]
         self.contact_num  = contact_force.shape[0]
-
-        # => Assign values
 
         self._id    = ball_id  # Ball id
         self.pos    = pos      # Position vector
@@ -250,7 +277,7 @@ class CG_mono_3D:
         zlim = (min(*zlim), max(*zlim))
         self._lims = np.array([xlim, ylim, zlim])
 
-        self._isPeriodic  = periodic_flag
+        self._isPeriodic  = np.array(periodic_flag, dtype=np.bool_)
         self._hasPeriodic = np.any(periodic_flag)
     
         # Update state
@@ -324,15 +351,13 @@ class CG_mono_3D:
 
         for i in _ball_iter:
             # Skip nodes not in flow group
-            if (self.inflow is not None) and (not self.inflow[i]):
-                continue
+            if (self.inflow is not None) and (not self.inflow[i]): continue
 
             # Get distance vector
             dR = self._get_distance_vec(R, self.pos[i,:])
 
             # Skip node which too far from center node `R`.
-            if np.linalg.norm(dR) >= MAX_width:
-                continue
+            if np.linalg.norm(dR) >= MAX_width: continue
 
             # Get weight
             W_i = CG_Gaussian(-dR, CG_width)
@@ -345,7 +370,10 @@ class CG_mono_3D:
             pass
 
         # Get velocity
-        U = np.array([Jx / rho, Jy / rho, Jz / rho], dtype=np.double)
+        if rho != 0:
+            U = np.array([Jx / rho, Jy / rho, Jz / rho], dtype=np.double)
+        else:
+            U = np.zeros((3,))
         return rho, U
 
     def get_CG_sigma_qk(self,
@@ -399,7 +427,6 @@ class CG_mono_3D:
 
             W_i = CG_Gaussian(-dR, CG_width)
             sigma_qk += SIGMA_q_k(self.mass[i], W_i, self.vel[i, :], U)
-            pass
 
         return sigma_qk
 
@@ -457,13 +484,15 @@ class CG_mono_3D:
             dR1 = self._get_distance_vec(R, self.pos[ball_i1, :])
             if np.linalg.norm(dR1) < MAX_width:
                 W_ij = self._W_ij_4_sigma_qc(dR1, l_i12, CG_width)
-                sigma_qc += SIGMA_q_c(F_i12, l_i12, W_ij)
+                if W_ij != 0:
+                    sigma_qc += SIGMA_q_c(F_i12, l_i12, W_ij)
 
             # Deal with ball_i2
             dR2 = self._get_distance_vec(R, self.pos[ball_i2, :])
             if np.linalg.norm(dR2) < MAX_width:
                 W_ij = self._W_ij_4_sigma_qc(dR2, -l_i12, CG_width)
-                sigma_qc += SIGMA_q_c(-F_i12, -l_i12, W_ij)
+                if W_ij != 0:
+                    sigma_qc += SIGMA_q_c(-F_i12, -l_i12, W_ij)
 
         return sigma_qc
 
@@ -488,10 +517,9 @@ class CG_mono_3D:
             Integrated weight coefficient used in the calculation of
             `sigma_qc`.
         """
+        _func = lambda s: CG_Gaussian(-dR + s * l_ij, CG_width)
         _x = np.linspace(0, 1, 101)
-        _y = np.array(
-            [CG_Gaussian(-dR + s * l_ij, CG_width) for s in _x]
-        )
+        _y = np.array([_func(s) for s in _x])
         W_ij = simpson(_y, x=_x)
         return W_ij
 
@@ -514,30 +542,7 @@ class CG_mono_3D:
             Distance between `R` and `r_i`, with periodic boundary considered.
             Pointing from `R` to `r_i`.
         """
-        dR = r_i - R
-        if not self._hasPeriodic: return dR
-
-        # Deal with periodic boundary
-        for q in range(3):
-            if not self._isPeriodic[q]: continue
-
-            # Deal with periodic boundary
-            _r_2L = abs(r_i[q] - self._lims[q,0])
-            _r_2R = abs(r_i[q] - self._lims[q,1])
-            _R_2L = abs(R[q] - self._lims[q,0])
-            _R_2R = abs(R[q] - self._lims[q,1])
-
-            r_near_left = _r_2L < _r_2R
-            R_near_left = _R_2L < _R_2R
-
-            r2R = abs(dR[q])
-            if R_near_left and (not r_near_left):
-                tmp = _r_2R + _R_2L
-                if tmp < r2R: dR[q] = -tmp
-            elif (not R_near_left) and r_near_left:
-                tmp = _r_2L + _R_2R
-                if tmp < r2R: dR[q] = tmp
-            pass
+        dR = get_distance(R, r_i, self._lims, self._hasPeriodic, self._isPeriodic)
         return dR
 
     @property
