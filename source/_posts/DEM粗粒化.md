@@ -9,10 +9,16 @@ categories:
 
 离散单元法（**D**iscrete **E**lement **M**ethod，简称**DEM**）是颗粒流数值模拟的重要数值方法，被用于各种各样的颗粒流定量研究中。颗粒流的粗粒化（**Coarse Graining**），便是将颗粒流流场的大量数据转化为连续场数据的数值方法。
 
+<details>
+<summary>
 在开始介绍之前，先简要列出主要的参考资料：  
+</summary>
+
 - Breard, E. C. P., Dufek, J., Fullard, L., & Carrara, A. (2020). <strong>The Basal Friction Coefficient of Granular Flows With and Without Excess Pore Pressure: Implications for Pyroclastic Density Currents, Water‐Rich Debris Flows, and Rock and Submarine Avalanches</strong>. _Journal of Geophysical Research: Solid Earth_, 125(12), e2020JB020203. [DOI:10.1029/2020JB020203](https://doi.org/10.1029/2020JB020203).
 - Lacaze, L., & Kerswell, R. R. (2009). <strong>Axisymmetric Granular Collapse: A Transient 3D Flow Test of Viscoplasticity</strong>. _Physical Review Letters_, 102(10), 108305. [DOI:10.1103/PhysRevLett.102.108305](https://doi.org/10.1103/PhysRevLett.102.108305).
 - Weinhart, T., Labra, C., Luding, S., & Ooi, J. Y. (2016). <strong>Influence of coarse‐graining parameters on the analysis of DEM simulations of silo flow</strong>. _Powder Technology_, 293, 138–148. [DOI:10.1016/j.powtec.2015.11.052](https://doi.org/10.1016/j.powtec.2015.11.052)
+
+</details>
 
 # 单种颗粒的粗粒化
 
