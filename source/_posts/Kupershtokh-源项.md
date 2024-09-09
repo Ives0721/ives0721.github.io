@@ -5,6 +5,8 @@ tags: [格子Boltzmann方法]
 categories:
 - [格子Boltzmann方法, 源项]
 ---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
 我在阅读其他文献时，看到有文献 Kupershtokh 的一篇关于 LBM 外力项的文章[^Kupershtokh2004]，他提出的格式在其他文章中又被称为 *Exact difference method（EDM）*。
 
 本想搜索这篇文章的PDF进行阅读，但最后只照着一个网站介绍了部分信息。这份粗略笔记的内容，都是基于其他文献[^Kupershtokh2009][^Li2016][^Li_PRE_2016]中对该方法的介绍而整理的。
