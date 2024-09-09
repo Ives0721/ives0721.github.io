@@ -7,9 +7,11 @@ categories:
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-我在阅读其他文献时，看到有文献 Kupershtokh 的一篇关于 LBM 外力项的文章[^Kupershtokh2004]，他提出的格式在其他文章中又被称为 *Exact difference method（EDM）*。
+> 本文同步发表于[知乎](https://zhuanlan.zhihu.com/p/719081120)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/142057107)
 
-本想搜索这篇文章的PDF进行阅读，但最后只照着一个网站介绍了部分信息。这份粗略笔记的内容，都是基于其他文献[^Kupershtokh2009][^Li2016][^Li_PRE_2016]中对该方法的介绍而整理的。
+我在阅读其他文献时，看到有文献提到 Kupershtokh 的一篇关于 LBM 外力项的文章[^Kupershtokh2004]，他提出的格式在其他文章中又被称为 *Exact difference method（EDM）*。
+
+本想搜索这篇文章的PDF进行阅读，但最后只找到[一个网站](https://www.elibrary.ru/item.asp?id=28981868)介绍了部分信息。这份粗略笔记的内容，都是基于其他文献[^Kupershtokh2009][^Li2016][^Li_PRE_2016]中对该方法的介绍而整理的。
 
 
 
@@ -77,6 +79,7 @@ $$
 其中：
 
 - $\delta_t$ 为时间步长；
+- $\tau = \tau_f / \delta_t$ 为无量纲松弛时间；
 - $\bold{x}$ 为网格点位置，$\rho, \bold{u^*}$ 分别为该点在 $t$ 时刻的密度和速度（与宏观速度 $\bold{u}$ 有区别）；
 - $f_\alpha, f_\alpha^{(eq)}$ 分别为 $\bold{e}_\alpha$ 方向的**分布函数**和**平衡态**；
 - $F_\alpha$ 为外力项，其表达式基于外力 $\bold{F} = \rho \dfrac{\mathrm{d} \bold{u^*}}{\mathrm{d} t} = \rho \bold{a}$ 进行构建。
