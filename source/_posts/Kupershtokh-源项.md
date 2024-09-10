@@ -107,7 +107,7 @@ $$
 
 Li 等[^Li_PRE_2016]通过 Chapman-Enskog 展开证明：该格式向宏观方程引入的误差项为：
 $$
-\mathbf{Error}_{\mathrm{EDM}} = -\delta_t^2 \nabla\cdot\left( \frac{\bold{FF}}{\rho} \right)
+\mathbf{Error}_{\mathrm{EDM}} = -\delta_t^2 \nabla\cdot\left( \frac{\bold{FF}}{4 \rho} \right)
 \tag{7}
 $$
 
