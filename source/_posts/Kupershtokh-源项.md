@@ -148,7 +148,7 @@ $$
 \bold{u}^* \bold{u}^* = u^*_{i} u^*_{j}
 $$
 
-其中 $u_i$ 和 $\Delta u_i = F_i \delta_t / \rho$ 分别为 $\bold{u}$ 和 $\Delta\bold{u}$ 在 i 轴上的分量，所以：
+其中 $u_i^*$ 和 $\Delta u_i = F_i \delta_t / \rho$ 分别为 $\bold{u}^*$ 和 $\Delta\bold{u}$ 在 i 轴上的分量，所以：
 $$
 \begin{aligned}
     & (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) - \bold{u}^* \bold{u}^* \\
@@ -169,6 +169,7 @@ F_\alpha
 \tag{8}
 $$
 上式即为EDM源项的展开结果。
+
 
 [^Kupershtokh2004]: Kupershtokh, A. L. [**New method of incorporating a body force term into the lattice Boltzmann equation**](https://www.elibrary.ru/item.asp?id=28981868). in *Proceeding of the 5th international EHD workshop* 241–246 (Poitiers, France, 2004).
 [^Kupershtokh2009]: A.L. Kupershtokh, D.A. Medvedev, & D.I. Karpov (2009). **On equations of state in a lattice Boltzmann method**. Computers & Mathematics with Applications, 58(5), 965-974. DOI:10.1016/j.camwa.2009.02.024.
