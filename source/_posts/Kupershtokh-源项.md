@@ -168,7 +168,7 @@ F_\alpha
 \end{aligned}
 \tag{8}
 $$
-上式即为EDM源项的展开结果。
+上式即为 EDM 源项的展开结果。
 
 
 [^Kupershtokh2004]: Kupershtokh, A. L. [**New method of incorporating a body force term into the lattice Boltzmann equation**](https://www.elibrary.ru/item.asp?id=28981868). in *Proceeding of the 5th international EHD workshop* 241–246 (Poitiers, France, 2004).
