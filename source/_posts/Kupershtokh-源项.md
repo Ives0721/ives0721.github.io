@@ -141,35 +141,30 @@ F_\alpha &= f_\alpha^{(eq)} (\bold{u^*}(t+\delta_t)) - f_\alpha^{(eq)} (\bold{u^
 &\qquad\qquad \left. - \bold{u}^* \bold{u}^* \right] : \left.(\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right\}
 \end{aligned}
 $$
-
 这里涉及矩阵 $(\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u})$ 和 $\bold{u}^* \bold{u}^*$ 的相减，由于：
 $$
 (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) = (u^*_{i} + \Delta u_i)(u^*_{j} + \Delta u_j), \quad
 \bold{u}^* \bold{u}^* = u^*_{i} u^*_{j}
 $$
 
-其中 $u_i^*$ 和 $\Delta u_i = F_i \delta_t / \rho$ 分别为 $\bold{u}^*$ 和 $\Delta\bold{u}$ 在 i 轴上的分量，所以：
+其中 $u_i^*$ 和 $\Delta u_i = F_i \delta_{t} / \rho$ 分别为 $\bold{u}^*$ 和 $\Delta\bold{u}$ 在 i 轴上的分量，所以：
 $$
 \begin{aligned}
-    & (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) - \bold{u}^* \bold{u}^* \\
-    =& (u^*_{i} + \Delta u_i)(u^*_{j} + \Delta u_j) - u^*_{i} u^*_{j} \\
-    =& \frac{\delta_t}{\rho} (u_i^* F_j + u_j^* F_i) + \frac{{\delta_t}^2}{\rho^2} F_i F_j \\
-    =& \frac{\delta_t}{\rho} (u_i^* + \frac{F_i \delta_t}{2 \rho}) F_j + \frac{\delta_t}{\rho} (u_j^* + \frac{F_j \delta_t}{2 \rho}) F_i 
+    (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) - \bold{u}^* \bold{u}^{*} &=
+    (u^*_{i} + \Delta u_i)(u^*_{j} + \Delta u_j) - u^*_{i} u^*_{j} \\ &=  
+    \frac{\delta_t}{\rho} (u_i^* F_j + u_j^* F_i) + \frac{\delta_t^2}{\rho^2} F_i F_j \\ &=
+    \frac{\delta_t}{\rho} (u_i^* + \frac{F_i \delta_t}{2 \rho}) F_j + \frac{\delta_t}{\rho} (u_j^* + \frac{F_j \delta_t}{2 \rho}) F_i 
 \end{aligned}
 $$
 
-这里令 $\bold{v}_{\rm{EDM}} = \bold{u}^* + \frac{\bold{F} \delta_t}{2 \rho}$ ，则 EDM 源项的展开式化简为：
+这里令 $\bold{v}_{\rm{EDM}} = \bold{u}^{*} + \frac{\bold{F}}{2 \rho}  \delta_{t}$ ,则 EDM 源项的展开式化简为：
 
 $$
-\begin{aligned}
-F_\alpha 
-&= \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2} +
+F_\alpha = \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2} +
 \frac{1}{2 c_s^4} \left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right]
-\end{aligned}
 \tag{8}
 $$
 上式即为 EDM 源项的展开结果。
-
 
 [^Kupershtokh2004]: Kupershtokh, A. L. [**New method of incorporating a body force term into the lattice Boltzmann equation**](https://www.elibrary.ru/item.asp?id=28981868). in *Proceeding of the 5th international EHD workshop* 241–246 (Poitiers, France, 2004).
 [^Kupershtokh2009]: A.L. Kupershtokh, D.A. Medvedev, & D.I. Karpov (2009). **On equations of state in a lattice Boltzmann method**. Computers & Mathematics with Applications, 58(5), 965-974. DOI:10.1016/j.camwa.2009.02.024.
