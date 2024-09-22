@@ -135,10 +135,10 @@ $$
 
 $$
 \begin{aligned}
-F_\alpha &= f_\alpha^{(eq)} (\bold{u^*}(t+\delta_t)) - f_\alpha^{(eq)} (\bold{u^*}(t)) \\
-&= \rho w_\alpha \left\{ \frac{\bold{e}_\alpha \cdot \Delta\bold{u}}{c_s^2} + \\
-\frac{1}{2 c_s^4} \left[ (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) \right.\right. \\
-&\qquad\qquad \left. - \bold{u}^* \bold{u}^* \right] : \left.(\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right\}
+F_{\alpha} &= f_\alpha^{(eq)} (\bold{u^*}(t+\delta_t)) - f_\alpha^{(eq)} (\bold{u^*}(t)) \\&= 
+\rho w_\alpha \left\{ \frac{\bold{e}_\alpha \cdot \Delta\bold{u}}{c_s^2} + 
+\newline \frac{1}{2 c_s^4} \left[ (\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u}) \right.\right. \\ &\quad 
+\left. - \bold{u}^* \bold{u}^* \right] : \left.(\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right\}
 \end{aligned}
 $$
 这里涉及矩阵 $(\bold{u}^* + \Delta\bold{u})(\bold{u}^* + \Delta\bold{u})$ 和 $\bold{u}^* \bold{u}^*$ 的相减，由于：
