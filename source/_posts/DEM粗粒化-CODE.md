@@ -6,8 +6,19 @@ categories:
 - [离散单元法]
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<!--Katex style sheet for mobile-->
+<style type="text/css">
+@media only screen and (max-width: 600px) {
+  .katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+</style>
 
 基于[这篇](/2024/07/30/DEM粗粒化/)的内容，我用 Python 写了一份对**单种颗粒系统**进行粗粒化的代码。
+
 
 其具体使用流程为：
 1. `obj = CG_mono_3D(...)`: 初始化。

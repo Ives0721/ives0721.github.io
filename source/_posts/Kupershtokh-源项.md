@@ -6,6 +6,17 @@ categories:
 - [格子Boltzmann方法, 源项]
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<!--Katex style sheet for mobile-->
+<style type="text/css">
+@media only screen and (max-width: 600px) {
+  .katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+</style>
+
 
 > 本文同步发表于[知乎](https://zhuanlan.zhihu.com/p/719081120)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/142057107)
 

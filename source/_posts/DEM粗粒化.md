@@ -6,6 +6,16 @@ categories:
 - [离散单元法]
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<!--Katex style sheet for mobile-->
+<style type="text/css">
+@media only screen and (max-width: 600px) {
+  .katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+</style>
 
 离散单元法（**D**iscrete **E**lement **M**ethod，简称**DEM**）是颗粒流数值模拟的重要数值方法，被用于各种各样的颗粒流定量研究中。颗粒流的粗粒化（**Coarse Graining**），便是将颗粒流流场的大量数据转化为连续场数据的数值方法。
 

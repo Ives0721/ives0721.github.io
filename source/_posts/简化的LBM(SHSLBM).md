@@ -7,6 +7,16 @@ categories:
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
+<!--Katex style sheet for mobile-->
+<style type="text/css">
+@media only screen and (max-width: 600px) {
+  .katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+</style>
 
 > **注：该文章同步发在[知乎专栏](https://zhuanlan.zhihu.com/p/695671429?)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/138388248?spm=1001.2014.3001.5502)**  
 > 这里所说的 “简化的格子 Boltzmann 方法” 其实是 ***Simplified and Highly Stable Lattice Boltzmann Method (SHSLBM)***([^c_1], [^2], [^3], [^4])。该方法的特色是仅使用平衡态分布函数、宏观密度、宏观速度进行 LBM 计算，并保证无条件稳定。  
