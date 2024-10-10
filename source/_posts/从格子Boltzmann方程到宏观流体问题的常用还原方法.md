@@ -130,7 +130,7 @@ $$\frac{\partial}{\partial x} = \varepsilon \frac{\partial}{\partial x_1} , x_1 
 
 ## 三、 Grad-13矩方法及其发展
 ### 3.1		Grad的矩分析方法
-Grad -13矩是一种由数学家Harold Grad提出的分析方法，其基于Hermite多项式进行分析。对于一个长度为 $N$ 的向量 $ \boldsymbol{x}$ ，若定义权函数
+Grad -13矩是一种由数学家Harold Grad提出的分析方法，其基于Hermite多项式进行分析。对于一个长度为 $N$ 的向量 $\boldsymbol{x}$ ，若定义权函数
 
 $$\omega( \boldsymbol{x}) = \frac{1}{(2 \pi)^{N/2}} \mathrm{exp} \left(- \frac{ \boldsymbol{x} \cdot  \boldsymbol{x}}{2} \right)      \tag{12}$$
 
@@ -153,9 +153,7 @@ $$\int_{-\infty}^{-\infty} \omega^{1/2} f(x) \mathcal{H}_j^{(m)} (x) \mathrm{d} 
 
 $$f(x, \xi, t) = \omega \sum_{n=0}^{\infty} \frac{1}{n!} a^{(n)} H^{(n)}(\xi) \tag{17}$$
 
-根据式(16)， 
-$$a^{(n)}$$
- 的表达式为：
+根据式(16)， $a^{(n)}$ 的表达式为：
 
 $$a^{(n)} = \int_{-\infty}^{+\infty} f(x, \xi, t) H^{(n)}(\xi) d\xi \tag{18}$$
 
@@ -172,7 +170,7 @@ $$a^{(2)} =  \int_{-\infty}^{+\infty} f(x, \xi, t) (\xi^2 - \delta) d\xi = \rho 
 
 $$a^{(3)} =  \int_{-\infty}^{+\infty} f(x, \xi, t) (\xi^3 - \xi \delta) d\xi = (D-1) \rho \bf{u}^3 + \bf{u} \it{a}^{\mathrm{(2)}} \mathrm{+}  \mathbf{Q}   \tag{19-4}$$
 
-注意到从$a^{(0)}$到 $a^{(3)}$ 都描述了流场的宏观量，所以通过上述表达式的值可以解出流场宏观量。与C-E分析方法不同的是分析过程中没有舍去高阶量。因此这种展开方法得到的式子合理地引入了更高阶的矩，物理意义更加明确。
+注意到从 $a^{(0)}$ 到 $a^{(3)}$ 都描述了流场的宏观量，所以通过上述表达式的值可以解出流场宏观量。与C-E分析方法不同的是分析过程中没有舍去高阶量。因此这种展开方法得到的式子合理地引入了更高阶的矩，物理意义更加明确。
 ### 3.2		Gauss-Hermite积分的引入和离散化BGK方程
 Grad的思路开创了描述的新方式，而单肖文、袁学锋、陈沪东三位学者在此基础上进一步发展，于2006年在 Journal of Fluid Mechanics 上提出了将原思路拓展到离散的Boltzmann-BGK方程中的方法[^SHAN等_2006]，简化了求解过程。
 首先，基于式(16)将 $f$ 截断至前 $N$ 阶，得：
@@ -270,9 +268,7 @@ $$\left\{\begin{matrix} \sum_{i} {F_i} = 0 \\ \sum_{i} {\xi_i F_i} = (1 - \frac{
 $$\left\{\begin{matrix} \sum_{i} {F_i^{(1)}} = 0 \\ \sum_{i} {\xi_i F_i^{(1)}} = (1 - \frac{1}{2 \tau}) F^{(1)} \\ \sum_{i} {\xi_i \xi_i F_i^{(1)}} = (1 - \frac{1}{2 \tau}) 2 u F^{(1)} \end{matrix}\right.$$
  
 为方便下文分析，记： $\Pi^{(k)} = \sum_i { \xi_i \xi_i f_i^{(k)} }$ ， $\Gamma^{(k)} = \sum_i { \xi_i \xi_i \xi_i f_i^{(k)} }$ 。
-对
-$$O({\varepsilon}^1)$$
-项求1阶和2阶速度矩，得：
+对 $O({\varepsilon}^1)$ 项求1阶和2阶速度矩，得：
 
 $$\frac{\partial \rho}{\partial t_1} + \frac{\partial (\rho u)}{\partial x_1} = 0  \tag{A-5.1}$$
 
@@ -282,9 +278,7 @@ $$\frac{\partial (\rho u)}{\partial t_1} + \frac{\partial \Pi^{(0)}}{\partial x_
 
 $$\Pi^{(0)} = \rho (\it{\bf{uu}} \mathrm{+} c_s^2 \bf{I})   \tag{A-5.3}$$
 
-对
-$$O({\varepsilon}^2)$$
-项求1阶和2阶速度矩，得：
+对 $O({\varepsilon}^2)$ 项求1阶和2阶速度矩，得：
 
 $$\frac{\partial {\rho}}{\partial t_{2}} = 0 \tag{A-6.1}$$
 
