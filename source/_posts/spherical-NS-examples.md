@@ -172,7 +172,7 @@ $$
 \end{aligned}
 $$
 
-所以 $$T = \sqrt{\frac{5}{8 \mu}} \cdot \frac{4}{5} c^{5/4} = \sqrt{\frac{2}{5 \mu}} c^{5/4}$$
+所以 $T = \sqrt{\frac{5}{8 \mu}} \cdot \frac{4}{5} c^{5/4} = \sqrt{\frac{2}{5 \mu}} c^{5/4}$ .
 
 证毕。
 
