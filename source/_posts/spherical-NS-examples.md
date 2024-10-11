@@ -227,4 +227,4 @@ $$
 W = E_{t_1} - E_0
 $$
 
-解得 $t_1$ 时刻的内球面速度为： $\displaystyle v_0= \left(\frac{14 \pi}{3 \rho} \frac{2^{1/3}}{2^{1/3} - 1}\right)^{\frac{1}{2}}$
+解得 $t_1$ 时刻的内球面速度为： $\displaystyle v_0= - \left(\frac{14 \pi}{3 \rho} \frac{2^{1/3}}{2^{1/3} - 1}\right)^{\frac{1}{2}}$ ，方向指向原点。
