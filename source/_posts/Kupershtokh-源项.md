@@ -100,7 +100,8 @@ f_\alpha^{(eq)} &= w_\alpha \rho \cdot \left[ 1 + \frac{\bold{e}_\alpha \cdot \b
 \end{aligned}
 \tag{4-1}
 $$
-这里 $w_\alpha$ 为 $\bold{e}_\alpha$ 的权重系数， $[\bold{I}]$ 为单位矩阵；两个同样为m*n大小的矩阵 $[\bold{A}]$ 和 $[\bold{B}]$ ，则 $[\bold{A}] : [\bold{B}] = \sum^{m}_{i=1}\sum^{n}_{j=1} A_{ij} B_{ij}$ ；
+这里 $w_\alpha$ 为 $\bold{e}_\alpha$ 的权重系数， $[\bold{I}]$ 为单位矩阵；
+两个同样为m*n大小的矩阵 $[\bold{A}]$ 和 $[\bold{B}]$ ，则 $\displaystyle [\bold{A}] : [\bold{B}] = \sum^{m}_{i=1}\sum^{n}_{j=1} A_{ij} B_{ij}$ ；
 - $F_\alpha$ 为外力项，其表达式基于外力 $\bold{F} = \rho \dfrac{\mathrm{d} \bold{u^*}}{\mathrm{d} t} = \rho \bold{a}$ 进行构建。
 
 $$
@@ -176,6 +177,117 @@ F_\alpha = \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2}
 \tag{8}
 $$
 上式即为 EDM 源项的展开结果。
+
+<!-- 
+## 源项误差的 Chapman-Enskog 分析
+
+这里的推导主要参考 Li 等[^Li_PRE_2016]的文章，并补充了一些自己的笔记。
+
+### 源项的各阶速度矩
+
+根据 LBM 格子张量对称性，有前 5 阶表达式：
+$$
+\sum_{\alpha} w_{\alpha} = 1 ,\quad
+\sum_{\alpha} w_{\alpha} e_{\alpha i} = 0 ,\\
+\sum_{\alpha} w_{\alpha} e_{\alpha i} e_{\alpha j} = c_s^2 \delta_{ij} ,\quad
+\sum_{\alpha} w_{\alpha} e_{\alpha i} e_{\alpha j} e_{\alpha k} = 0 \\
+\sum_{\alpha} w_{\alpha} e_{\alpha i} e_{\alpha j} e_{\alpha k} e_{\alpha l} = c_s^4 (\delta_{ij} \delta_{kl} + \delta_{ik} \delta_{jl} + \delta_{il} \delta_{kj}) \\
+\sum_{\alpha} w_{\alpha} e_{\alpha i} e_{\alpha j} e_{\alpha k} e_{\alpha l} e_{\alpha m} = 0
+$$
+
+其中 $e_{\alpha i}$ 表示 **D 维向量** $\bold{e}_{\alpha}$ 的第 $i$ 个分量， $w_\alpha$ 为 $\bold{e}_{\alpha}$ 的权重系数。 $\delta_{ij}$ 为克罗内克符号。
+
+所以，对于 EDM 格式的源项 $F_{\alpha,\mathrm{EDM}}$ ，其各阶速度矩为：
+$$
+\sum_{\alpha} F_{\alpha,\mathrm{EDM}} = 0 ,\quad
+\sum_{\alpha} \bold{e}_\alpha F_{\alpha,\mathrm{EDM}} = \bold{F} ,\quad\\
+\sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha,\mathrm{EDM}} = \delta_t \left( (\bold{u}^* \bold{F} + \bold{F}\bold{u}^*) + \delta_t \frac{\bold{FF}}{\rho} \right)
+\tag{9}
+$$
+
+技术细节可见附录（A）。
+
+### LBM 的 Chapman-Enskog 展开
+
+令展开参数 $\epsilon$ 是与克努森数同阶的小量，则将分布函数展开为
+
+$$
+f_{\alpha} = f_{\alpha}^{(0)} + \epsilon f_{\alpha}^{(1)} + \epsilon^2 f_{\alpha}^{(2)} + ...,
+$$
+
+源项展开为 $F_{\alpha} = \epsilon F_{1 \alpha}$，时间和空间偏导展开为
+
+$$
+\frac{\partial}{\partial t} = \epsilon \frac{\partial}{\partial t_1} + \epsilon^2 \frac{\partial}{\partial t_2}
+,\quad
+\frac{\partial}{\partial \bold{x}} = \epsilon \frac{\partial}{\partial \bold{x}_1}.
+$$
+
+将式(4)中的 $f_\alpha (\bold{x} + \bold{e}_\alpha \delta_t, t+\delta_t)$ 在 $f_\alpha (\bold{x}, t)$ 处进行 Taylor 展开（至2阶项），并把上述展开式代入，可得 $\epsilon$ 各阶项的方程为：
+
+$$
+\begin{aligned}
+O(\epsilon^0):\quad & 
+    f_{\alpha}^{(0)} = f_{\alpha}^{(eq)} ,\\
+O(\epsilon^1):\quad &
+    \mathrm{D}_{1 \alpha} f_{\alpha}^{(0)} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(1)} + \frac{F_{1 \alpha}}{\delta_t} ,\\
+O(\epsilon^2):\quad &
+    \frac{\partial f_{\alpha}^{(0)}}{\partial t_2} + \mathrm{D}_{1 \alpha} f_{\alpha}^{(1)} + \frac{\delta_t}{2} \mathrm{D}_{1 \alpha}^2 f_{\alpha}^{(0)} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(2)}
+    .\\
+\end{aligned}
+$$
+
+其中 $\displaystyle \mathrm{D}_{1 \alpha} = \frac{\partial}{\partial t_1} + \bold{e}_{\alpha} \cdot \frac{\partial}{\partial \bold{x}_1}$。
+
+# 附录
+## （A）源项各阶速度矩的推导
+
+这里仅以 $\displaystyle \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha,\mathrm{EDM}}$ 的计算举例来简单说明。
+
+$$
+\begin{aligned}
+    \sum_{\alpha} \bold{e}_{\alpha} \bold{e}_{\alpha} F_{\alpha,\mathrm{EDM}}
+    &= \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \cdot \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2} + \right.\\
+    &\quad\left.
+    \frac{1}{2 c_s^4} \left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right] \\
+    &= \frac{\delta_t}{c_s^2} \sum_{\alpha} \left[ \bold{e}_\alpha \bold{e}_\alpha (w_\alpha \bold{e}_\alpha \cdot \bold{F}) \right] + \\
+    &\quad \frac{\delta_t}{2 c_s^4} \sum_{\alpha} w_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \cdot [\left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}])]
+\end{aligned}
+$$
+
+一方面，对于 $\displaystyle \sum_{\alpha} \left[ \bold{e}_\alpha \bold{e}_\alpha (w_\alpha \bold{e}_\alpha \cdot \bold{F}) \right]$ 这个矩阵，它的第 $i$ 行第 $j$ 列写作
+$$
+\sum_{k} F_{k} \sum_{\alpha}(w_{\alpha} e_{\alpha i} e_{\alpha j} e_{\alpha k}) = \sum_{k} F_{k} \cdot 0 = 0
+$$
+
+另一方面，已知 $\bold{v}_{\rm{EDM}} = \bold{u}^{*} + \frac{\bold{F}}{2 \rho}  \delta_{t}$，由于 $\left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right)$ 为矩阵。所以，下文为方便起见，我们记 
+
+$$[\bold{\mathbb{B}}] = \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} = \bold{u}^{*} \bold{F} + \bold{F} \bold{u}^{*} + \frac{\delta_t}{\rho}\bold{F}\bold{F}$$
+
+则  $[\bold{\mathbb{B}}] : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}])$ 是一个标量。
+对于矩阵 $\displaystyle [\bold{\mathbb{A}}] = \sum_{\alpha} w_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \cdot \{[\bold{\mathbb{B}}] : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}])\}$ ，它的第 $i$ 行第 $j$ 列 $\mathbb{A}_{ij}$ 写作
+
+$$
+\begin{aligned}
+\mathbb{A}_{ij} &= \sum_{\alpha} w_{\alpha} e_{\alpha i} e_{\alpha j} \left[ \sum_{k} \sum_{l} \mathbb{B}_{kl}  (e_{\alpha k} e_{\alpha l} - c_s^2 \delta_{kl}) \right]
+\\&= \sum_{k} \sum_{l} \mathbb{B}_{kl} \sum_{\alpha} \left\{ w_{\alpha} e_{\alpha i} e_{\alpha j} (e_{\alpha k} e_{\alpha l} - c_s^2 \delta_{kl}) \right\}
+\\&= \sum_{k} \sum_{l} \mathbb{B}_{kl} \cdot c_s^4 (\delta_{il} \delta_{jk} + \delta_{ik} \delta_{jl})
+\\&= (\mathbb{B}_{ij} +\mathbb{B}_{ji}) c_s^4
+\end{aligned}
+$$
+
+因为 $[\mathbb{B}]$ 是对称矩阵，所以 $\mathbb{A}_{ij} =2 c_s^4 \mathbb{B}_{ij}$。也就有：
+$$
+\begin{aligned}
+\sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha,\mathrm{EDM}} &= 
+\vec{\bold{0}} + \frac{\delta_t}{2 c_s^4} \sum_{\alpha} w_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \cdot [\left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}])] 
+\\&=  \delta_t \left( \bold{v}_{\rm{EDM}} \bold{F}  + \bold{F} \bold{v}_{\rm{EDM}} \right)
+\\&= \delta_t \left( \bold{u}^{*} \bold{F} + \bold{F} \bold{u}^{*} + \frac{\delta_t}{\rho}\bold{F}\bold{F} \right)
+\end{aligned}
+$$
+
+综上， $\displaystyle \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha,\mathrm{EDM}} = \delta_t \left( \bold{u}^* \bold{F} + \bold{F}\bold{u}^* + \delta_t \frac{\bold{FF}}{\rho} \right)$ 成立。其他低阶矩均采用类似方法进行计算。当然，这也同样可以拓展至其他源项的速度矩计算。
+-->
 
 [^Kupershtokh2004]: Kupershtokh, A. L. [**New method of incorporating a body force term into the lattice Boltzmann equation**](https://www.elibrary.ru/item.asp?id=28981868). in *Proceeding of the 5th international EHD workshop* 241–246 (Poitiers, France, 2004).
 [^Kupershtokh2009]: A.L. Kupershtokh, D.A. Medvedev, & D.I. Karpov (2009). **On equations of state in a lattice Boltzmann method**. Computers & Mathematics with Applications, 58(5), 965-974. DOI:10.1016/j.camwa.2009.02.024.
