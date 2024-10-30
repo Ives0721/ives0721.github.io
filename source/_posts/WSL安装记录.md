@@ -30,7 +30,17 @@ wsl --set-default-version 2
 
 WSL 2 的自定义安装位置参考的是[CSDN](https://blog.csdn.net/aaada123/article/details/142643762)上给的做法：我下载了[Ubuntu 24.04 的 AppxBundle](https://wslstorestorage.blob.core.windows.net/wslblob/Ubuntu2404-240425.AppxBundle)，从包里提取 `Ubuntu_2404.0.5.0_x64.Appx` ，然后在我想要的位置将它当成 zip 解压。最后运行一下 `ubuntu2404.exe` 即可。
 
-2. **安装CUDA**
+2. **导入Windows系统的字体**
+
+这里主要参照知乎上给的方法[^WSL_font]，做了个软链接。
+
+```shell
+sudo mkdir /usr/share/fonts/win11 
+sudo ln -s /mnt/c/Windows/Fonts/* /usr/share/fonts/win11
+fc-cache -fv
+```
+
+3. **安装CUDA**
 
 [Nvidia 的安装教程](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl-2) 和它给的[下载链接](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local)主要是针对 WSL-Ubuntu 的。
 
@@ -56,6 +66,7 @@ export LD_LIBRARY_PATH=/usr/lib/wsl/lib/:${LD_LIBRARY_PATH}
 
 搞定。
 
+[^WSL_font]: https://zhuanlan.zhihu.com/p/683470601
 [^MS_WSL_1]: https://learn.microsoft.com/zh-cn/windows/wsl/install  
 [^MS_WSL_2]: https://learn.microsoft.com/zh-cn/windows/wsl/install-manual  
 [^WSL_cuda1]: https://stackoverflow.com/questions/68221962/nvcc-not-found-but-cuda-runs-fine  
