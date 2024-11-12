@@ -135,3 +135,8 @@ giscus:
   input_position: bottom
   # Load the comments lazily
   loading: lazy
+
+# Add caption for iamges
+image_caption:
+  enable: true #false to disable
+  # class_name: #if you wanna customize the style for the caption,you can assign a class name, default is 'image-caption'
