@@ -46,8 +46,8 @@ from scipy.special import erf
 from scipy.integrate import simpson
 
 
-@nb.jit(forceobj=True)
-def CG_Gaussian(r: npt.NDArray[np.double], w: float) -> float:
+@nb.jit(nopython=True)
+def CG_Gaussian(r: npt.NDArray[np.double], w: float, V_w: float) -> float:
     """Gaussian Coarse Graining function.
 
     Parameters
@@ -56,6 +56,8 @@ def CG_Gaussian(r: npt.NDArray[np.double], w: float) -> float:
         Relative position vector, whose shape is `(3,)`.
     w: float
         Course grain width `w`.
+    V_w: float
+        The coefficient of Gaussian Coarse Graining function.
                                         
     Return
     ===
@@ -69,16 +71,13 @@ def CG_Gaussian(r: npt.NDArray[np.double], w: float) -> float:
     r_norm: float = r[0]**2 + r[1]**2 + r[2]**2
     # define weight
     W = 0.0
-    V_w = 0.0
-    if r_norm <= c_2:
-        V_w = np.sqrt(8) * np.pi**1.5 * w**3 * erf(c/w/np.sqrt(2)) - \
-            4 * c * w**2 * np.pi * np.exp(-c**2 / w**2 / 2)
+    if r_norm < c_2:
         W = np.exp(-r_norm / (2 * w**2)) / V_w
     return W
 
 
 @nb.jit("f8[:, :](f8, f8, f8[:], f8[:])",
-        nogil=True, nopython=True, parallel=True)
+        nopython=True, parallel=True, nogil=True)  
 def SIGMA_q_k(mass_i: float,
               W_i: float,
               vel_i: npt.NDArray[np.double],
@@ -110,7 +109,7 @@ def SIGMA_q_k(mass_i: float,
 
 
 @nb.jit("f8[:, :](f8[:], f8[:], f8)",
-        nogil=True, nopython=True, parallel=True)
+        nopython=True, parallel=True, nogil=True)
 def SIGMA_q_c(F_ij: npt.NDArray[np.double],
               l_ij: npt.NDArray[np.double],
               W_ij: float) -> npt.NDArray[np.double]:
@@ -163,7 +162,7 @@ def get_distance(R: npt.NDArray[np.double],
             elif (not R_near_left) and r_near_left:
                 tmp = _r_2L + _R_2R
                 if tmp < r2R: dR[q] = tmp
-    return dR   
+    return -dR
 
 
 class CG_mono_3D:
@@ -196,7 +195,9 @@ class CG_mono_3D:
         contact_force: numpy.NDArray[double]
             Contact force list, whose shape is `[contact_num, 3]`.
         contact_branch: numpy.NDArray[double]
-            List of contact branch, whose shape is `[contact_num, 3]`.
+            List of contact branch, whose shape is `[contact_num, 3]`. Each 
+            line `i` means the distance vector from `contact_end_ball[i, 0]`
+            to `contact_end_ball[i, 1]`.
         contact_end_ball: numpy.NDArray[double]
             List of contacted balls tuple, whose shape is `[contact_num, 2]`.
         in_flow: numpy.NDArray[np.bool_], optional
@@ -254,6 +255,12 @@ class CG_mono_3D:
             for i in range(self.contact_num)
         ]
         self._c_end_id = np.array(self._c_end_id, dtype=np.intc)
+
+        # Unit normal of each contact
+        self.contact_norm = []
+
+        # Real contact branch vector, pointing from contact point to balls' center
+        self.branch_vector_list = self._get_branch_vector()
 
         # => STATUS of domain config
         self._domain_init = False
@@ -320,9 +327,11 @@ class CG_mono_3D:
         if self._domain_init is False:
             raise Exception("Exception: `self.set_domain` haven't run to set domain.")
 
-        rho, U   = self.get_CG_vel(R, w)
-        sigma_qk = self.get_CG_sigma_qk(R, w, U)
-        sigma_qc = self.get_CG_sigma_qc(R, w)
+        V_w = self.get_CG_factors(w)
+
+        rho, U   = self.get_CG_vel(R, w, V_w)
+        sigma_qk = self.get_CG_sigma_qk(R, w, U, V_w)
+        sigma_qc = self.get_CG_sigma_qc(R, w, V_w)
         sigma    = sigma_qk + sigma_qc
         return rho, U, sigma
 
@@ -332,7 +341,8 @@ class CG_mono_3D:
 
     def get_CG_vel(self,
                    R: npt.NDArray[np.double],
-                   CG_width: float) -> _T.Tuple[float, npt.NDArray[np.double]]:
+                   CG_width: float,
+                   V_w: float) -> _T.Tuple[float, npt.NDArray[np.double]]:
         """Get velocity and density.
 
         Parameter
@@ -341,6 +351,8 @@ class CG_mono_3D:
             Center of coarse graining node.
         CG_width: float
             Width of coarse graining.
+        V_w: float
+            The coefficient of Gaussian Coarse Graining function.
 
         Return
         ---
@@ -362,16 +374,18 @@ class CG_mono_3D:
 
         for i in _ball_iter:
             # Skip nodes not in flow group
-            if (self.inflow is not None) and (not self.inflow[i]): continue
+            if (self.inflow is not None) and (not self.inflow[i]):
+                continue
 
             # Get distance vector
             dR = self._get_distance_vec(R, self.pos[i,:])
 
             # Skip node which too far from center node `R`.
-            if np.linalg.norm(dR) >= MAX_width: continue
+            if np.linalg.norm(dR) >= MAX_width:
+                continue
 
             # Get weight
-            W_i = CG_Gaussian(-dR, CG_width)
+            W_i = CG_Gaussian(dR, CG_width, V_w)
 
             # Assign value
             rho += self.mass[i] * W_i
@@ -390,7 +404,8 @@ class CG_mono_3D:
     def get_CG_sigma_qk(self,
                         R: npt.NDArray[np.double],
                         CG_width: float,
-                        U: npt.NDArray[np.double]) -> npt.NDArray[np.double]:
+                        U: npt.NDArray[np.double],
+                        V_w: float) -> npt.NDArray[np.double]:
         """
         Get stress tensor contributed by kinetic energy.
         
@@ -402,7 +417,9 @@ class CG_mono_3D:
             Width of coarse graining.
         U: numpy.NDArray[double]
             Coarse grained velocity at node `R`.
-        
+        V_w: float
+            The coefficient of Gaussian Coarse Graining function.
+
         Return
         ---
         sigma_qk: numpy.NDArray[double]
@@ -428,22 +445,26 @@ class CG_mono_3D:
 
         for i in _ball_iter:
             # Skip nodes not in flow group
-            if (self.inflow is not None) and (not self.inflow[i]): continue
+            if (self.inflow is not None) and (not self.inflow[i]):
+                continue
 
             # Get distance vector
             dR = self._get_distance_vec(R, self.pos[i,:])
 
             # Skip node which too far from center node `R`.
-            if np.linalg.norm(dR) >= MAX_width: continue
+            if np.linalg.norm(dR) >= MAX_width:
+                continue
 
-            W_i = CG_Gaussian(-dR, CG_width)
+            W_i = CG_Gaussian(dR, CG_width, V_w)
             sigma_qk += SIGMA_q_k(self.mass[i], W_i, self.vel[i, :], U)
+            pass
 
         return sigma_qk
 
     def get_CG_sigma_qc(self,
                         R: npt.NDArray[np.double],
-                        CG_width: float) -> npt.NDArray[np.double]:
+                        CG_width: float,
+                        V_w: float) -> npt.NDArray[np.double]:
         """
         Get stress tensor contributed by contact.
         
@@ -453,6 +474,8 @@ class CG_mono_3D:
             Center of coarse graining node.
         CG_width: float
             Width of coarse graining.
+        V_w: float
+            The coefficient of Gaussian Coarse Graining function.
         
         Return
         ---
@@ -488,30 +511,32 @@ class CG_mono_3D:
             # contact force (from i1 to i2)
             F_i12 = self.c_force[i, :]
 
-            # contact branch (from i1 to i2)
-            l_i12 = self.c_branch[i, :]
-
             # Deal with ball_i1
             dR1 = self._get_distance_vec(R, self.pos[ball_i1, :])
             if np.linalg.norm(dR1) < MAX_width:
-                W_ij = self._W_ij_4_sigma_qc(dR1, l_i12, CG_width)
+                # contact branch (from i1 to i2)
+                l_i1 = self.branch_vector_list[0][i]
+                # integration weight
+                W_ij = self._W_ij_4_sigma_qc(dR1, l_i1, CG_width, V_w)
                 if W_ij != 0:
-                    sigma_qc += SIGMA_q_c(F_i12, l_i12, W_ij)
+                    sigma_qc += SIGMA_q_c(F_i12, l_i1, W_ij)
 
             # Deal with ball_i2
             dR2 = self._get_distance_vec(R, self.pos[ball_i2, :])
             if np.linalg.norm(dR2) < MAX_width:
-                W_ij = self._W_ij_4_sigma_qc(dR2, -l_i12, CG_width)
+                # contact branch (from i2 to i1)
+                l_i2 = self.branch_vector_list[1][i]
+                # integration weight
+                W_ij = self._W_ij_4_sigma_qc(dR2, l_i2, CG_width, V_w)
                 if W_ij != 0:
-                    sigma_qc += SIGMA_q_c(-F_i12, -l_i12, W_ij)
+                    sigma_qc += SIGMA_q_c(-F_i12, l_i2, W_ij)
 
         return sigma_qc
 
     # ========================== #
     # === Auxiliary function === #
     # ========================== #
-
-    def _W_ij_4_sigma_qc(self, dR, l_ij, CG_width) -> float:
+    def _W_ij_4_sigma_qc(self, dR, l_ij, CG_width, V_w) -> float:
         """
         Parameters
         ---
@@ -521,6 +546,8 @@ class CG_mono_3D:
             Contact branch vector, whose shape is `(3,)`.
         CG_width: float
             Width of coarse graining.
+        V_w: float
+            The coefficient of Gaussian Coarse Graining function.
         
         Return
         ----
@@ -528,8 +555,8 @@ class CG_mono_3D:
             Integrated weight coefficient used in the calculation of
             `sigma_qc`.
         """
-        _func = lambda s: CG_Gaussian(-dR + s * l_ij, CG_width)
-        _x = np.linspace(0, 1, 101)
+        _func = lambda s: CG_Gaussian(dR + s * l_ij, CG_width, V_w)
+        _x = np.linspace(0, 1, 201)
         _y = np.array([_func(s) for s in _x])
         W_ij = simpson(_y, x=_x)
         return W_ij
@@ -539,19 +566,19 @@ class CG_mono_3D:
                           r_i: npt.NDArray[np.double]) -> npt.NDArray[np.double]:
         """Get distance between center of coarse graining node `R` and 
         loaction of particle's center `r_i`.
-
+    
         Parameter
         ---
         R: numpy.NDArray[double]
             Center of coarse graining node.
         r_i: numpy.NDArray[double]
             Loaction of particle's center.
-        
+    
         Return
         ---
         dR: numpy.NDArray[double]
-            Distance between `R` and `r_i`, with periodic boundary considered.
-            Pointing from `R` to `r_i`.
+            Distance between `R` and `r_i` (i.e. `R - r_i`), with periodic
+            boundary considered.
         """
         dR = get_distance(R, r_i, self._lims, self._hasPeriodic, self._isPeriodic)
         return dR
@@ -580,6 +607,52 @@ class CG_mono_3D:
             raise ValueError("`search_width_coef` should be larger than cut off width coefficient (3.0)")
         else:
             self._MAX_width = value
+    
+    def get_CG_factors(self, w: float) -> float:
+        """Calculate the coefficient of Gaussian Coarse Graining function.
 
+        Parameter
+        ----
+        w: float
+            Course grain width `w`.
+
+        Return
+        ----
+        V_w: float
+            The coefficient of Gaussian Coarse Graining function.
+        """
+        c = 3 * w
+        V_w = np.sqrt(8) * np.pi**1.5 * w**3 * erf(c/w/np.sqrt(2)) - \
+            4 * c * w**2 * np.pi * np.exp(-c**2 / w**2 / 2)
+        return V_w
+
+    def _get_branch_vector(self) -> list[list[np.ndarray]]:
+        """Calculate the real contact branch vector, because `self.c_branch`
+        only means the distance of the 2 balls' spherical centers on the same
+        contact. 
+        """
+        branch_vector_list = [[], []]
+        self.contact_norm = []
+
+        for i in range(self.contact_num):
+            id_i = self._c_end_id[i, 0]
+            id_j = self._c_end_id[i, 1]
+            r_i = self.radius[id_i]
+            r_j = self.radius[id_j]
+
+            # Distance of the 2 balls' spherical centers (from i to j)
+            l_ij = self.c_branch[i, :]
+            l_norm = np.linalg.norm(l_ij)
+            N = l_ij / l_norm
+
+            delta = r_i + r_j - l_norm
+
+            l_i = -N * (r_i - delta / 2)
+            l_j = N * (r_j - delta / 2)
+            branch_vector_list[0].append(l_i)
+            branch_vector_list[1].append(l_j)
+            self.contact_norm.append(N)
+
+        return branch_vector_list
 ```
 </details>
