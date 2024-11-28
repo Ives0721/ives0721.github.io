@@ -178,10 +178,12 @@ F_\alpha = \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2}
 $$
 上式即为 EDM 源项的展开结果。
 
-<!-- 
+
 ## 源项误差的 Chapman-Enskog 分析
 
 这里的推导主要参考 Li 等[^Li_PRE_2016]的文章，并补充了一些自己的笔记。
+
+需要提醒的是，下文的速度记号和前文不同。
 
 ### 源项的各阶速度矩
 
@@ -207,7 +209,7 @@ $$
 
 技术细节可见附录（A）。
 
-### LBM 的 Chapman-Enskog 展开
+### LBM 的常规 Chapman-Enskog 展开
 
 令展开参数 $\epsilon$ 是与克努森数同阶的小量，则将分布函数展开为
 
@@ -228,16 +230,105 @@ $$
 $$
 \begin{aligned}
 O(\epsilon^0):\quad & 
-    f_{\alpha}^{(0)} = f_{\alpha}^{(eq)} ,\\
+    f_{\alpha}^{(0)} = f_{\alpha}^{(eq)} , &(10-1)\\
 O(\epsilon^1):\quad &
-    \mathrm{D}_{1 \alpha} f_{\alpha}^{(0)} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(1)} + \frac{F_{1 \alpha}}{\delta_t} ,\\
+    \mathrm{D}_{1 \alpha} f_{\alpha}^{(0)} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(1)} + \frac{F_{1 \alpha}}{\delta_t} , &(10-2)\\
 O(\epsilon^2):\quad &
     \frac{\partial f_{\alpha}^{(0)}}{\partial t_2} + \mathrm{D}_{1 \alpha} f_{\alpha}^{(1)} + \frac{\delta_t}{2} \mathrm{D}_{1 \alpha}^2 f_{\alpha}^{(0)} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(2)}
-    .\\
+    . &(10-3)\\
+\end{aligned} 
+$$
+
+其中 $\displaystyle \mathrm{D}_{1 \alpha} = \frac{\partial}{\partial t_1} + \bold{e}_{\alpha} \cdot \frac{\partial}{\partial \bold{x}_1}$。将式(10-2)代入式(10-3)中，式(10-3)可被化简为式(10-4)：
+$$
+\begin{aligned}
+O(\epsilon^2):\quad &
+    \frac{\partial f_{\alpha}^{(0)}}{\partial t_2} + \mathrm{D}_{1 \alpha} \left(1 - \frac{1}{2 \tau}\right) f_{\alpha}^{(1)} + \frac{1}{2} \mathrm{D}_{1 \alpha} F_{1 \alpha} = -\frac{1}{\tau \delta_t} f_{\alpha}^{(2)}
+    . &(10-4)
+\end{aligned} 
+$$
+
+（1）考虑对式(10-3)和式(10-4)计算**零阶矩**，得：
+$$
+\frac{\partial \rho}{\partial t_1} + \nabla_1 \cdot (\rho \bold{u}^*) = 0 \\
+\frac{\partial \rho}{\partial t_2} + \frac{1}{2} \nabla_1 \cdot (\delta_t \bold{F}_1) = 0 \\
+$$
+
+此处 $\bold{u}^* = (\sum_{i} \bold{e}_\alpha f_\alpha) / (\sum_{i} f_\alpha)$ 并非真实流场速度，而 $\hat{\bold{u}} = \bold{u}^* + \bold{F} \delta_t / (2 \rho)$ 为真实流场速度（也就是式(6)给出的形式）。
+
+基于前面假设的偏微分关系式，我们可以得到 $\displaystyle \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \hat{\bold{u}}) = 0$ 。 
+
+（2）同理，对式(10-3)和式(10-4)计算**一阶矩**，得：
+$$
+\frac{\partial \rho \bold{u}^*}{\partial t_1} + \nabla_1 \cdot (\rho \bold{u}^* \bold{u}^*) = -\nabla_1 p + \bold{F}_1 \\
+\frac{\partial \rho \bold{u}^*}{\partial t_2} + \nabla_1 \cdot \left[\left(1 - \frac{1}{2 \tau}\right) \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(1)} \right] + \frac{\delta_t}{2} \frac{\partial \bold{F}_1}{\partial t_1} + \frac{1}{2} \nabla_1 \cdot \left( \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{1 \alpha} \right) = 0
+$$
+
+其中 $p = \rho c_s^2$ 。
+
+根据式(10-2)，有：
+
+$$
+\begin{aligned}
+    \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(1)} &= -\tau \left[ \delta_t \frac{\partial}{\partial t_1}\left( \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(0)} \right) \right. +\\
+    &\quad \left. \delta_t \nabla_1 \cdot \left( \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(0)} \right) - \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{1 \alpha} \right]
 \end{aligned}
 $$
 
-其中 $\displaystyle \mathrm{D}_{1 \alpha} = \frac{\partial}{\partial t_1} + \bold{e}_{\alpha} \cdot \frac{\partial}{\partial \bold{x}_1}$。
+记
+$$
+\begin{aligned}
+    \Pi^{(1)} &= -\delta_t \left( \tau - \frac{1}{2} \right) \left[ \frac{\partial}{\partial t_1}\left( \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(0)} \right) + \nabla_1 \cdot \left( \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \bold{e}_\alpha f_{\alpha}^{(0)} \right) \right] \\
+    &= -\delta_t \left( \tau - \frac{1}{2} \right) \{\rho c_s^2 [\nabla_1 \bold{u}^* + (\nabla_1 \bold{u}^*)^T] +  \bold{u}^*\bold{F}_1 + \bold{F}_1 \bold{u}^* \}
+\end{aligned}
+$$
+
+则**式(10-4)的一阶矩**表示为： $\displaystyle \frac{\partial \rho \bold{u}^*}{\partial t_2} + \nabla_1 \Pi^{(1)} + \frac{\delta_t}{2} \frac{\partial \bold{F}_1}{\partial t_1} + \nabla_1 \cdot \left( \tau \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{1 \alpha} \right) = 0$ 。
+
+那么同样根据假设的微分关系，即可还原出一阶矩对应的方程。这里直接写出使用真实流场速度 $\hat{\bold{u}} = \bold{u}^* + \bold{F} \delta_t / (2 \rho)$ 表示的形式：
+
+$$
+\begin{aligned}
+\frac{\partial (\rho \hat{\bold{u}})}{\partial t} + \nabla \cdot (\rho \hat{\bold{u}} \hat{\bold{u}}) &= -\nabla p + \bold{F} + \nabla \cdot \{ \rho \nu [\nabla_1 \bold{u}^* + (\nabla_1 \bold{u}^*)^T \} \\
+&\quad - \nabla \cdot \{ \rho \nu [\nabla_1 \bold{a} + (\nabla_1 \bold{a})^T] \} + \frac{\delta_t}{2} \epsilon^2 \frac{\partial \bold{F}}{\partial t_2} \\
+&\quad+ \nabla \cdot \left[ \tau \delta_t (\bold{u^* F} + \bold{F u^*}) + \delta_t^2 \frac{\bold{FF}}{4 \rho} - \tau \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha} \right]
+\end{aligned}
+$$
+
+其中 $\bold{a} = \delta_t \bold{F} / 2 \rho$ ， $\nu = (\tau - \frac{1}{2}) c_s^2 \delta_t$ 为流体运动粘度。 通过对比N-S方程，可见其误差项为：
+
+$$
+\text{Err} = - \nabla \cdot \{ \rho \nu [\nabla_1 \bold{a} + (\nabla_1 \bold{a})^T] \} + \frac{\delta_t}{2} \epsilon^2 \frac{\partial \bold{F}}{\partial t_2} + \nabla \cdot \left[ \tau \delta_t (\bold{u^* F} + \bold{F u^*}) + \delta_t^2 \frac{\bold{FF}}{4 \rho} - \tau \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha} \right]
+$$
+
+但上述的展开方式和Wagner等[^Wagner_2006]使用Taylor展开的结果并不一致。 Li 等[^Li_PRE_2016] 指出这种错误的来源是：上文将 $f_{\alpha}^{(0)} = f_{\alpha}^{(eq)}(\rho, \bold{u}^*)$，从而得到了 $\sum_{\alpha} \bold{e}_{\alpha} f_{\alpha}^{(1)} = 0$。 然而实际上 $f_{\alpha}^{(0)} = f_{\alpha}^{(eq)}(\rho, \hat{\bold{u}})$ ，从而有 $\sum_{\alpha} \bold{e}_{\alpha} f_{\alpha}^{(1)} = -\delta_t \bold{F}_1 / 2$ 。
+
+### 修正后的 Chapman-Enskog 展开
+
+因此，需要将原本的 LBE 等效地修改为：
+
+$$
+f_\alpha (\bold{x} + \bold{e}_\alpha \delta_t, t+\delta_t) - f_\alpha (\bold{x}, t) = \hat{F}_{\alpha} -\frac{1}{\tau} \left[ f_\alpha (\bold{x}, t) - f_\alpha^{(eq)} (\rho, \hat{\bold{u}}) \right] 
+\tag{11}
+$$
+
+其中 $\hat{F}_{\alpha} = F_{\alpha} - \frac{1}{\tau} (f_\alpha^{(eq)} (\rho, \hat{\bold{u}}) - f_\alpha^{(eq)} (\rho, \bold{u}^*))$ 为基于原始源项 $F_{\alpha}$ 修改而来的等效源项。并且需要强调的是，式(11)中的平衡态采用真实流场速度 $\hat{\bold{u}}$ 计算。 在式(11)这一等效公式上，执行与上一节一致的 Chapman-Enskog 展开后，可得到还原的N-S方程为：
+
+$$
+\begin{aligned}
+\frac{\partial (\rho \hat{\bold{u}})}{\partial t} + \nabla \cdot (\rho \hat{\bold{u}} \hat{\bold{u}}) &= -\nabla p + \bold{F} + \nabla \cdot \{ \rho \nu [\nabla_1 \hat{\bold{u}} + (\nabla_1 \hat{\bold{u}})^T \} \\
+&\quad + \nabla \cdot \left[ \left(\tau - \frac{1}{2}\right) \delta_t (\hat{\bold{u}}\bold{F} + \bold{F}\hat{\bold{u}}) - \tau \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \hat{F}_{\alpha} \right]
+\end{aligned}
+\tag{12}
+$$
+
+式(12)的误差项为：
+$$
+\text{Err} = \nabla \cdot \left[ \left(\tau - \frac{1}{2}\right) \delta_t (\hat{\bold{u}}\bold{F} + \bold{F}\hat{\bold{u}}) - \tau \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha \hat{F}_{\alpha} \right]
+\tag{13}
+$$
+
+将 EDM 的源项代入式(13)中，得到： $\text{Err}=-\delta_t^2 \nabla\cdot\left( \frac{\bold{FF}}{4 \rho} \right)$
 
 # 附录
 ## （A）源项各阶速度矩的推导
@@ -287,9 +378,41 @@ $$
 $$
 
 综上， $\displaystyle \sum_{\alpha} \bold{e}_\alpha \bold{e}_\alpha F_{\alpha,\mathrm{EDM}} = \delta_t \left( \bold{u}^* \bold{F} + \bold{F}\bold{u}^* + \delta_t \frac{\bold{FF}}{\rho} \right)$ 成立。其他低阶矩均采用类似方法进行计算。当然，这也同样可以拓展至其他源项的速度矩计算。
--->
+
+## （B）修正源项的计算
+
+由于 $\bold{a} = \delta_t \bold{F} / 2 \rho = \hat{\bold{u}} - \bold{u}^*$ ，则 $\rho \bold{a} = \delta_t \bold{F} / 2$ 。因此：
+
+$$
+\begin{aligned}
+& \frac{1}{\tau} (f_\alpha^{(eq)} (\rho, \hat{\bold{u}}) - f_\alpha^{(eq)} (\rho, \bold{u}^*)) 
+\\=& \frac{\rho w_{\alpha}}{\tau} \left[ \frac{\bold{e}_{\alpha} \cdot \bold{a}}{c_s^2} + \frac{1}{2 c_s^4} (\hat{\bold{u}}\hat{\bold{u}} - \bold{u^* u^*}):(\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right] 
+\\=& \frac{\rho w_{\alpha}}{\tau} \left[ \frac{\bold{e}_{\alpha} \cdot \bold{a}}{c_s^2} + \frac{1}{2 c_s^4} ( \bold{u^* a} +  \bold{a u^*} +  \bold{aa}):(\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right]
+\\=& \frac{w_{\alpha} \delta_t}{\tau} \left[ \frac{\bold{e}_{\alpha} \cdot \bold{F}}{2 c_s^2} + \frac{1}{2 c_s^4} \left( \frac{1}{2} (\bold{u^* F} +  \bold{F u^*}) +  \delta_t \frac{\bold{FF}}{4 \rho} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right]
+\end{aligned}
+$$
+
+由于 EDM 源项的表达式为：
+$$
+F_{\alpha,\mathrm{EDM}} = \delta_t w_\alpha \left[ \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2} +
+\frac{1}{2 c_s^4} \left( \hat{\bold{u}} \bold{F}  + \bold{F} \hat{\bold{u}} \right) : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right]
+$$
+
+
+因此，其对应修正源项为
+
+$$
+\begin{aligned}
+& F_{\alpha,\mathrm{EDM}} - \frac{1}{\tau} (f_\alpha^{(eq)} (\rho, \hat{\bold{u}}) - f_\alpha^{(eq)} (\rho, \bold{u}^*)) 
+\\=& \frac{\bold{e}_\alpha \cdot \bold{F}}{c_s^2} (1 - \frac{1}{2 \tau}) +
+\\& \frac{w_{\alpha} \delta_t}{2 c_s^4} \left\{ \left[ (\frac{1}{2 \tau} - 1) (\bold{u^* F} +  \bold{F u^*}) - (\bold{a F} +  \bold{F a}) \right.\right.
+\\& \left.\left. - \frac{\delta_t}{4 \rho \tau} \bold{FF} \right] : (\bold{e}_\alpha \bold{e}_\alpha - c_s^2 [\bold{I}]) \right\}
+\end{aligned}
+$$
+
 
 [^Kupershtokh2004]: Kupershtokh, A. L. [**New method of incorporating a body force term into the lattice Boltzmann equation**](https://www.elibrary.ru/item.asp?id=28981868). in *Proceeding of the 5th international EHD workshop* 241–246 (Poitiers, France, 2004).
 [^Kupershtokh2009]: A.L. Kupershtokh, D.A. Medvedev, & D.I. Karpov (2009). **On equations of state in a lattice Boltzmann method**. Computers & Mathematics with Applications, 58(5), 965-974. DOI:10.1016/j.camwa.2009.02.024.
 [^Li2016]: Q. Li, K.H. Luo, Q.J. Kang, Y.L. He, Q. Chen, & Q. Liu (2016). **Lattice Boltzmann methods for multiphase flow and phase-change heat transfer**. Progress in Energy and Combustion Science, 52, 62-105. DOI:10.1016/j.pecs.2015.10.001.
 [^Li_PRE_2016]: Li, Q., Zhou, P., & Yan, H. (2016). **Revised Chapman-Enskog analysis for a class of forcing schemes in the lattice Boltzmann method**. Physical Review E, 94, 043313. DOI:10.1103/PhysRevE.94.043313.
+[^Wagner_2006]: Wagner, A. (2006). Thermodynamic consistency of liquid-gas lattice Boltzmann simulations. Physical Review E, 74, 056703. DOI: 10.1103/PhysRevE.74.056703.
