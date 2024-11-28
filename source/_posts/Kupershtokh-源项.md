@@ -33,7 +33,7 @@ categories:
 密度分布函数 $f$ 的 Boltzmann-BGK方程写作：
 
 $$
-\frac{\partial f}{\partial t} + \bold{\xi} \cdot \nabla f + \bold{a} \cdot \nabla_{\bold{\xi}} f  = -\frac{1}{\tau_f} \left[ f - f^{(eq)}\right]
+\frac{\partial f}{\partial t} + \bold{\xi} \cdot \nabla f + \boldsymbol{a} \cdot \nabla_{\bold{\xi}} f  = -\frac{1}{\tau_f} \left[ f - f^{(eq)}\right]
 \tag{1}
 $$
 
@@ -50,7 +50,7 @@ $$
 * $\bold{u}$ : 流场宏观速度；
 * $R_g$ : 气体常数；
 * $T$ : 温度；
-* $\bold{a}=\mathrm{d}\bold{u}/\mathrm{d}t$ : 流场加速度。
+* $\boldsymbol{a}=\mathrm{d}\bold{u}/\mathrm{d}t$ : 流场加速度。
 
 当**Knudsen数较小**时，Boltzmann方程的体力项可以基于$f^{(eq)}$进行近似，即
 $$\nabla_{\bold{\xi}} f \approx \nabla_{\bold{\xi}} f^{(eq)}$$
@@ -65,7 +65,7 @@ $$
 $$
 \begin{aligned}
 \frac{\mathrm{d} f^{(eq)}}{\mathrm{d} t} &= \frac{\partial f^{(eq)}}{\partial \bold{u}} \cdot \frac{\mathrm{d} \bold{u}}{\mathrm{d} t} + \frac{\partial f^{(eq)}}{\partial \rho} \cdot \frac{\mathrm{d} \rho}{\mathrm{d} t} \\
-&\approx \frac{\partial f^{(eq)}}{\partial \bold{u}} \cdot \frac{\mathrm{d} \bold{u}}{\mathrm{d} t} = -\bold{a} \cdot \nabla_{\bold{\xi}} f^{(eq)}
+&\approx \frac{\partial f^{(eq)}}{\partial \bold{u}} \cdot \frac{\mathrm{d} \bold{u}}{\mathrm{d} t} = -\boldsymbol{a} \cdot \nabla_{\bold{\xi}} f^{(eq)}
 \end{aligned}
 $$
 
