@@ -106,13 +106,22 @@ deploy:
   branch: main
 
 # Math render
+## https://github.com/theme-kaze/hexo-theme-kaze/issues/24
 markdown_it_plus:
+  highlight: true
+  html: true
+  xhtmlOut: true
+  breaks: true
+  langPrefix:
+  linkify: true
+  typographer:
+  quotes: “”‘’
   plugins:
     - plugin:
       name: '@iktakahiro/markdown-it-katex'
       enable: true
       options:
-         strict: error
+         strict: false
     # - plugin:
     #   name: '@andatoshiki/markdown-it-katex'
     #   enable: true
