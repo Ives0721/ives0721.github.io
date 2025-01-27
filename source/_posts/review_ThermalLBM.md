@@ -76,7 +76,7 @@ $$
 
 ## 格子Boltzmann方法
 
-广义上说, LBM是离散Boltzmann方法（Discrete Boltzmann Method, DBM）的一种, 是式(1.1)的一种数值格式。本节介绍从式(1.1)到格子Boltzmann方程的离散思路, 推导中仅考虑外力加速度 $\mathbf{a =}\mathbf{F}/ m \equiv 0$ 的情况。
+广义上说, LBM是离散Boltzmann方法（Discrete Boltzmann Method, DBM）的一种, 是式(1.1)的一种数值格式。本节介绍从式(1.1)到格子Boltzmann方程的离散思路, 推导中仅考虑外力加速度 $\mathbf{a} =\mathbf{F}/ m \equiv 0$ 的情况。
 
 对式(1.1)沿着特征线 $\mathbf{\xi} = \mathbf{x}/t$ 在 $\Delta t$ 时间段内作积分, 略去 $O({\Delta t}^{2})$ , 得
 
@@ -93,7 +93,7 @@ $$
 \tag{1.5}
 $$
 
-这里 $\Psi\left( \mathbf{\xi} \right)$为$\mathbf{\xi}$ 的多项式,  $\mathbf{\xi}_{i}$ 为离散速度,  $w_{i}$ 为积分的权系数。具体到Boltzmann方程中, 则至少应满足质量和动量守恒：
+这里 $\Psi\left( \mathbf{\xi} \right)$ 为 $\mathbf{\xi}$ 的多项式, $\mathbf{\xi}_i$ 为离散速度, $w_{i}$ 为积分的权系数。具体到Boltzmann方程中, 则至少应满足质量和动量守恒：
 
 $$
 \rho = \sum_{i}^{}f_{i} = \sum_{i} f_{i}^{(eq)},\, \mathbf{j} = \rho\mathbf{u} = \sum_{i} {\mathbf{\xi}_{i}f_{i}} = \sum_{i} {\mathbf{\xi}_{i}f_{i}^{(eq)}}
@@ -300,7 +300,7 @@ $$
 
 $\alpha$的解可通过迭代法或近似公式计算[^5]。由于部分常规D*n*Qb模型在使用$f^{(eq)}$的低阶展开（如式(1.10)）时无法满足熵方程[^17], 因此该方法通常需要对D*n*Qb模型进行修改, 或搭配多速D*n*Qb模型一同使用。
 
-Pransianakis等[^3] [^21] 在ELBE的总体框架上, 将碰撞项视为从$f_{i}$到中间态$f_{i}^{*}$再到平衡态$f_{i}^{(eq)}$的两步松弛, 即：
+Pransianakis等[^3] [^21] 在ELBE的总体框架上, 将碰撞项视为从 $f_{i}$ 到中间态 $f_{i}^{*}$ 再到平衡态 $f_{i}^{(eq)}$ 的两步松弛, 即：
 
 $$- \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{*} \right) - \frac{1}{\tau_{2}}\left( f_{i}^{*} - f_{i}^{(eq)} \right)$$
 
@@ -331,7 +331,7 @@ $$
 \end{cases}
 $$
 
-Frapolli等[^20]认为, 上述计算中仅需要对涉及$\mu$的部分进行校正。当$\Pr < 1$时, $\omega_{1} = \alpha\beta_{1},\omega_{2} = \beta_{2}$；当$\Pr > 1$时, $\omega_{1} = \beta_{1},\omega_{2} = \alpha\beta_{2}$。$\alpha$仍为方程$H\left( f + \alpha\left( f - f^{(eq)} \right) \right) = H(f)$的解。因此, $\mu$和$\kappa$的计算变为：
+Frapolli等[^20]认为, 上述计算中仅需要对涉及$\mu$的部分进行校正。当$\Pr < 1$时, $\omega_{1} = \alpha\beta_{1},\omega_{2} = \beta_{2}$ ；当$\Pr > 1$时, $\omega_{1} = \beta_{1},\omega_{2} = \alpha\beta_{2}$ 。 $\alpha$ 仍为方程 $H\left( f + \alpha\left( f - f^{(eq)} \right) \right) = H(f)$ 的解。因此, $\mu$ 和 $\kappa$ 的计算变为：
 
 $$
 \mu = \left\{ \begin{matrix}
@@ -347,7 +347,7 @@ $$
 > **[NOTE]**  
 > 当 $\Pr = 1$ 时模型退化为LBGK方程, 这里不做讨论。
 
-上述所介绍的基于ELBE的热流模拟能够成功还原Fourier-Navier-Stokes方程组, 实现低马赫数下各种热流的数值模拟, 但也没有实现热流和流场的耦合。此外, 由于$H$函数的引入, 这类方法需要额外求解$H\left( f + \alpha\left( f - f^{(eq)} \right) \right) = H(f)$, 在数值计算上导致一定不便。
+上述所介绍的基于ELBE的热流模拟能够成功还原Fourier-Navier-Stokes方程组, 实现低马赫数下各种热流的数值模拟, 但也没有实现热流和流场的耦合。此外, 由于 $H$ 函数的引入, 这类方法需要额外求解 $H\left( f + \alpha\left( f - f^{(eq)} \right) \right) = H(f)$ , 在数值计算上导致一定不便。
 
 # 双分布函数LBE模型
 
@@ -359,25 +359,30 @@ $$
 
 Bartoloni等 [^8] 指出：在压力做功和黏性热耗散项均可被忽略的场景中, 可将流场和温度场分别采用两套分布函数体系进行对流扩散。一般来说, 无源项的DDF-LBE演化方程组为：
 
-$$\begin{matrix}
-f_{i}\left( \mathbf{x} + \mathbf{c}_{i}\Delta t,t + \Delta t \right) - f_{i}\left( \mathbf{x},t \right) = - \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{(eq)} \right)\#(3.1) \\
-\end{matrix}$$
+$$
+f_{i}\left( \mathbf{x} + \mathbf{c}_{i}\Delta t,t + \Delta t \right) - f_{i}\left( \mathbf{x},t \right) = - \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{(eq)} \right)\tag{3.1}
+$$
 
-$$\begin{matrix}
-g_{i}\left( \mathbf{x} + \mathbf{c}_{i}\Delta t,t + \Delta t \right) - g_{i}\left( \mathbf{x},t \right) = - \frac{1}{\tau_{2}}\left( g_{i} - g_{i}^{(eq)} \right)\#(3.2) \\
-\end{matrix}$$
+$$
+g_{i}\left( \mathbf{x} + \mathbf{c}_{i}\Delta t,t + \Delta t \right) - g_{i}\left( \mathbf{x},t \right) = - \frac{1}{\tau_{2}}\left( g_{i} - g_{i}^{(eq)} \right)\tag{3.2}
+$$
 
-其中$f_{i}$和$g_{i}$分别用于计算速度和温度, 并通过如下速度矩还原宏观物理量
+其中 $f_{i}$ 和 $g_{i}$ 分别用于计算速度和温度, 并通过如下速度矩还原宏观物理量
 
-$$\begin{matrix}
-\rho = \sum_{i}^{}f_{i},\ \ \mathbf{j} = \rho\mathbf{u} = \sum_{i}^{}{\mathbf{c}_{i}f_{i}},\ \ \rho T = \sum_{i}^{}g_{i}\#(3.3) \\
-\end{matrix}$$
+$$
+\rho = \sum_{i}^{}f_{i},\,
+\mathbf{j} = \rho\mathbf{u} = \sum_{i}^{}{\mathbf{c}_{i}f_{i}},\,
+\rho T = \sum_{i}^{}g_{i}
+\tag{3.3}
+$$
 
 需要强调的是, $f_{i}$和$g_{i}$分别使用不同的DnQb模型, 因此它们的格子声速分别为$c_{s1}$和$c_{s2}$。两个松弛时间（$\tau_{1},\ \tau_{2}$）和运动粘度$\nu$、热扩散系数$\kappa$的关系为：
 
-$$\begin{matrix}
-\tau_{1} = \frac{\nu}{c_{s1}^{2}} + \frac{1}{2},\ \ \tau_{2} = \frac{\kappa}{c_{s2}^{2}} + \frac{1}{2}\#(3.4) \\
-\end{matrix}$$
+$$
+\tau_{1} = \frac{\nu}{c_{s1}^{2}} + \frac{1}{2},\,
+\tau_{2} = \frac{\kappa}{c_{s2}^{2}} + \frac{1}{2}
+\tag{3.4}
+$$
 
 这种思路仅额外添加了一组分布函数及其平衡态的定义, 并且由于其易于实现, 目前是低速小Mach数场景下热流的一种主流LBM计算方法。
 
@@ -447,8 +452,8 @@ $$
 可以看到多原子分子的流场与单原子分子的区别主要体现在能量上, 而${\overline{f}}^{(eq)}$与式(1.10)一致。流场宏观量表示为：
 
 $$
-\rho = \int \overline{f}d\mathbf{\xi,\,
-j =}\rho\mathbf{u =}\int {\mathbf{\xi}\overline{f}}d\mathbf{\xi},\,
+\rho = \int \overline{f}d\mathbf{\xi},\,
+\mathbf{j} =\rho\mathbf{u} = \int {\mathbf{\xi}\overline{f}}d\mathbf{\xi},\,
 \rho E = \int \overline{h}d\mathbf{\xi}.
 $$
 
