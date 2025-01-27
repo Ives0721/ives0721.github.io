@@ -70,7 +70,7 @@ $$
 \left[\frac{\boldsymbol{c}_i - \boldsymbol{u}}{c_s^2} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^4}\right] \cdot \boldsymbol{F}
 $$
 
-其中 $\boldsymbol{F}$ 为外力加速度。此时宏观密度 $\rho$ 和动量 $\boldsymbol{j}$ 的计算表示为：
+其中 $\boldsymbol{F}$ 为外力加速度。此时宏观密度 $\rho$ 、速度 $\boldsymbol{u}$ 和动量 $\boldsymbol{j}$ 的计算表示为：
 $$
 \rho = \sum\limits_{i=0}^{b-1} f_i ,\quad
 \boldsymbol{j} = \rho \boldsymbol{u} = \frac{\boldsymbol{F}}{2} +  \sum\limits_{i=0}^{b-1} f_i \boldsymbol{c}_{i}
@@ -216,7 +216,7 @@ $$
 \end{aligned}
 $$
 
-可见 TRT 模型就是 MRT 模型的特例，将 MRT 中所使用的诸多松弛系数减少至到 2 个。
+可见 TRT 模型就是 MRT 模型的特例，将 MRT 中所使用的诸多松弛系数减少至到 2 个（$\frac{1}{\tau^{+}}$ 和 $\frac{1}{\tau^{-}}$）。
 
 <!--
 1. Ginzburg, I., d’Humières, D. & Kuzmin, A. Optimal Stability of Advection-Diffusion Lattice Boltzmann Models with Two Relaxation Times for Positive/Negative Equilibrium. J Stat Phys 139, 1090–1143 (2010). https://doi.org/10.1007/s10955-010-9969-9
