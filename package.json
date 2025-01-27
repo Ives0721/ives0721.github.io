@@ -14,7 +14,7 @@
   "dependencies": {
     "glob": "^11.0.0",
     "stylus": "^0.63.0",
-    "@iktakahiro/markdown-it-katex": "^0.0.3",
+    "@iktakahiro/markdown-it-katex": "^4.0.0",
     "hexo": "^7.3.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
