@@ -252,11 +252,17 @@ $$
 
 下标 $-i$ 表示 $\mathbf{c}_{- i} = - \mathbf{c}_{i}$ 方向.$\tau_{v} = \tau_{1}\tau_{2}/(\tau_{1} + \tau_{2})$ ,  $\tau_{k} = \tau_{1}\tau_{2}/(\tau_{2} - \tau_{1})$ .Chen等[^2]指出其导出的宏观方程组为
 
-$$\frac{D\rho}{Dt} = \rho\nabla \cdot \mathbf{u}$$
+$$
+\frac{D\rho}{Dt} = \rho\nabla \cdot \mathbf{u}
+$$
 
-$$\frac{\partial\left( \rho\mathbf{u} \right)}{\partial t} + \nabla \cdot \left( \rho\mathbf{uu} \right) = - \nabla p + \nabla \cdot \mathbf{T}_{v}$$
+$$
+\frac{\partial\left( \rho\mathbf{u} \right)}{\partial t} + \nabla \cdot \left( \rho\mathbf{uu} \right) = - \nabla p + \nabla \cdot \mathbf{T}_{v}
+$$
 
-$$\frac{\partial(\rho e)}{\partial t} + \nabla \cdot \left( \rho e\mathbf{u} \right) = p\nabla \cdot \mathbf{u} + \nabla \cdot (\kappa\nabla T) + \mathbf{T}_{k}:\nabla\mathbf{u}$$
+$$
+\frac{\partial(\rho e)}{\partial t} + \nabla \cdot \left( \rho e\mathbf{u} \right) = p\nabla \cdot \mathbf{u} + \nabla \cdot (\kappa\nabla T) + \mathbf{T}_{k}:\nabla\mathbf{u}
+$$
 
 其中
 
@@ -304,7 +310,8 @@ $\alpha$ 的解可通过迭代法或近似公式计算[^5].由于部分常规D*n
 
 Pransianakis等[^3] [^21] 在ELBE的总体框架上, 将碰撞项视为从 $f_{i}$ 到中间态 $f_{i}^{*}$ 再到平衡态 $f_{i}^{(eq)}$ 的两步松弛, 即：
 
-$$- \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{*} \right) - \frac{1}{\tau_{2}}\left( f_{i}^{*} - f_{i}^{(eq)} \right)$$
+$$
+\frac{-1}{\tau_{1}}\left( f_{i} - f_{i}^{*} \right) - \frac{1}{\tau_{2}}\left( f_{i}^{*} - f_{i}^{(eq)} \right)$$
 
 中间态 $f_{i}^{*}$ 是平衡态的扰动, 即：$f_{i}^{*} = f_{i}^{(eq)} + \delta f_{i}^{*}$.校正量$\delta f_{i}^{*}$ 的计算可基于 "中间态的热通量不变" 假设构造 $\delta f_{i}^{*}$ 的方程组进行求解.松弛时间为 $\tau_{1} = \mu/\rho T_{0}$ 和 $\tau_{2} = 2\kappa/\rho T_{0}$ , 分别控制应力张量和热流量的松弛, $T_{0}$ 是格子系统中的参考温度.因此, Prandtl数为 $\Pr = 4\tau_{1}/\tau_{2}$ .
 
