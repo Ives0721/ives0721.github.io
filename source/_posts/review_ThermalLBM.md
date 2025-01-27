@@ -206,7 +206,9 @@ $$
 其中 $A_{\sigma}$ 到 $H_{\sigma}$ 均为待定参数, 它们均可被表示为内能 $e$ 和密度 $\rho$ 的复合函数, 即 $X_{\sigma} = \left( x_{\sigma 0} + x_{\sigma 1}e + x_{\sigma 2}e^{2} \right)\rho$ 。并且 $f_{\sigma i}^{(eq)}$ 的各阶速度矩需要满足下列约束条件：
 
 $$
-\sum_{\sigma i}^{}f_{\sigma i}^{(eq)} = \rho,\ \ \sum_{\sigma i}^{}{\mathbf{c}_{\sigma i}f_{\sigma i}^{(eq)}} = \rho\mathbf{u},\ \ \sum_{\sigma i}^{}{\mathbf{c}_{\sigma i}\mathbf{c}_{\sigma i}f_{\sigma i}^{(eq)}} = \rho\mathbf{uu} + p\mathbf{I}
+\sum_{\sigma i} f_{\sigma i}^{(eq)} = \rho,\, 
+\sum_{\sigma i} {\mathbf{c}_{\sigma i}f_{\sigma i}^{(eq)}} = \rho\mathbf{u},\, 
+\sum_{\sigma i} {\mathbf{c}_{\sigma i}\mathbf{c}_{\sigma i}f_{\sigma i}^{(eq)}} = \rho\mathbf{uu} + p\mathbf{I}
 $$
 
 $$
@@ -245,7 +247,7 @@ $$
 其中
 
 $$
-\Omega_{i} = - \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{(eq)} \right),\ \ \Omega_{\mathbb{i}} = - \frac{1}{\tau_{2}}\left( f_{- i} - f_{- i}^{(eq)} \right)
+\Omega_{i} = - \frac{1}{\tau_{1}}\left( f_{i} - f_{i}^{(eq)} \right),\, \Omega_{\mathbb{i}} = - \frac{1}{\tau_{2}}\left( f_{- i} - f_{- i}^{(eq)} \right)
 $$
 
 下标 $-i$ 表示 $\mathbf{c}_{- i} = - \mathbf{c}_{i}$ 方向。$\tau_{v} = \tau_{1}\tau_{2}/(\tau_{1} + \tau_{2})$ ,  $\tau_{k} = \tau_{1}\tau_{2}/(\tau_{2} - \tau_{1})$ 。Chen等[^2]指出其导出的宏观方程组为
@@ -259,7 +261,7 @@ $$\frac{\partial(\rho e)}{\partial t} + \nabla \cdot \left( \rho e\mathbf{u} \ri
 其中
 
 $$
-\mathbf{T}_{v} = 2\mu_{v}\mathbf{S} + \lambda_{v}\left( \nabla \cdot \mathbf{u} \right)\mathbf{I},\mathbf{\ \ }\mathbf{T}_{k} = 2\mu_{k}\mathbf{S} + \lambda_{k}\left( \nabla \cdot \mathbf{u} \right)\mathbf{I}
+\mathbf{T}_{v} = 2\mu_{v}\mathbf{S} + \lambda_{v}\left( \nabla \cdot \mathbf{u} \right)\mathbf{I},\mathbf{\, }\mathbf{T}_{k} = 2\mu_{k}\mathbf{S} + \lambda_{k}\left( \nabla \cdot \mathbf{u} \right)\mathbf{I}
 $$
 
 $\mathbf{S}$ 为应变率张量。各输运系数为
@@ -335,12 +337,12 @@ Frapolli等[^20]认为, 上述计算中仅需要对涉及$\mu$的部分进行校
 
 $$
 \mu = \left\{ \begin{matrix}
-\frac{1}{2}\left( \frac{1}{\beta_{1}} - 1 \right)\rho T,\ \ \Pr \leq 1 \\
-\frac{1}{2}\left( \frac{1}{\beta_{2}} - 1 \right)\rho T,\ \ \Pr \geq 1 \\
+\frac{1}{2}\left( \frac{1}{\beta_{1}} - 1 \right)\rho T,\, \Pr \leq 1 \\
+\frac{1}{2}\left( \frac{1}{\beta_{2}} - 1 \right)\rho T,\, \Pr \geq 1 \\
 \end{matrix} \right.\ ,\, 
 \kappa = \left\{ \begin{matrix}
-\left( \frac{1}{\beta_{2}} - \frac{1}{2} \right)\rho T,\ \ \Pr \leq 1 \\
-\left( \frac{1}{\beta_{1}} - \frac{1}{2} \right)\rho T,\ \ \Pr \geq 1 \\
+\left( \frac{1}{\beta_{2}} - \frac{1}{2} \right)\rho T,\, \Pr \leq 1 \\
+\left( \frac{1}{\beta_{1}} - \frac{1}{2} \right)\rho T,\, \Pr \geq 1 \\
 \end{matrix} \right.\ .
 $$
 
@@ -417,7 +419,7 @@ $$
 \tag{3.7}
 $$
 
-其中$Z = \mathbf{\xi \cdot u} - \frac{u^{2}}{2}$, $\frac{1}{\tau_{hf}} = \frac{1}{\tau_{h}} - \frac{1}{\tau_{f}}$。
+其中 $Z = \mathbf{\xi \cdot u} - \frac{u^{2}}{2}$, $\frac{1}{\tau_{hf}} = \frac{1}{\tau_{h}} - \frac{1}{\tau_{f}}$。
 
 多原子分子气体的 $f$ 也受到分子转动和振动的影响, 因此其平衡态 $f^{(eq)}$ 为：
 
@@ -449,7 +451,7 @@ $$
 \tag{3.12}
 $$
 
-可以看到多原子分子的流场与单原子分子的区别主要体现在能量上, 而${\overline{f}}^{(eq)}$与式(1.10)一致。流场宏观量表示为：
+可以看到多原子分子的流场与单原子分子的区别主要体现在能量上, 而 ${\overline{f}}^{(eq)}$ 与式(1.10)一致。流场宏观量表示为：
 
 $$
 \rho = \int \overline{f}d\mathbf{\xi},\,
@@ -511,7 +513,11 @@ $$
 
 各宏观量则为：
 
-$$\rho = \sum_{i}^{}{\overline{f}}_{i},\ \ \ \mathbf{j} = \rho\mathbf{u} = \sum_{i}^{}{\mathbf{c}_{i}{\overline{f}}_{i}},\ \ \rho E = \sum_{i}^{}{\overline{h}}_{i}.$$
+$$
+\rho = \sum_{i}^{}{\overline{f}}_{i},\,
+\mathbf{j} = \rho\mathbf{u} = \sum_{i}^{}{\mathbf{c}_{i}{\overline{f}}_{i}},\, 
+\rho E = \sum_{i}^{}{\overline{h}}_{i}.
+$$
 
 运动粘度为$\mu = \tau_{f}p_{0}$, 热扩散系数为$\kappa = c_{v}\tau_{h}p_{0} = \frac{D + K}{2}R_{g}\tau_{h}p_{0}$。因此该模型的Prandtl数为 $\Pr = \mu c_{p}/\kappa = \gamma\tau_{f}/\tau_{h}$, 其中 $\gamma$ 为比热比。
 
@@ -558,7 +564,9 @@ $$
 其中 $\omega\left( \mathbf{\xi},T \right)$ 满足
 
 $$
-\int {\omega(\mathbf{\xi},T)}d\mathbf{\xi =}0,\ \ \int {\omega(\mathbf{\xi},T)\mathbf{\xi}}d\mathbf{\xi =}0,\ \ \int {\omega\left( \mathbf{\xi},T \right)\mathbf{\xi}\mathbf{\xi}^{T}}d\mathbf{\xi =}pR_{g}T\mathbf{I}
+\int {\omega(\mathbf{\xi},T)}d\mathbf{\xi =}0,\, 
+\int {\omega(\mathbf{\xi},T)\mathbf{\xi}}d\mathbf{\xi =}0,\, 
+\int {\omega\left( \mathbf{\xi},T \right)\mathbf{\xi}\mathbf{\xi}^{T}}d\mathbf{\xi =}pR_{g}T\mathbf{I}
 $$
 
 因此可通过构建等价离散形式（式(3.24)）：
