@@ -127,11 +127,11 @@ $$
 这里以D2Q9离散速度集为例介绍权重的计算, 其离散速度集为
 
 $$
-\mathbf{c}_{\alpha} = \left\{ \begin{matrix}
-(0,0) & ,\alpha = 0 \\
-c\left( \cos\frac{\pi(\alpha - 1)}{2},\sin\frac{\pi(\alpha - 1)}{2} \right) & ,\alpha = 1\ldots 4 \\
-\sqrt{2}c\left( \cos\frac{\pi(2\alpha - 1)}{4},\sin\frac{\pi(2\alpha - 1)}{4} \right) & ,\alpha = 5\ldots 8 \\
-\end{matrix} \right.
+\mathbf{c}_{\alpha} = \begin{cases}
+  (0,0) & ,\alpha = 0 \\
+  c\left( \cos\frac{\pi(\alpha - 1)}{2},\sin\frac{\pi(\alpha - 1)}{2} \right) & ,\alpha = 1\ldots 4 \\
+  \sqrt{2}c\left( \cos\frac{\pi(2\alpha - 1)}{4},\sin\frac{\pi(2\alpha - 1)}{4} \right) & ,\alpha = 5\ldots 8 \\
+\end{cases}
 \tag{1.7}
 $$
 
@@ -567,8 +567,8 @@ $$
 
 $$
 f^{(eq)} = \begin{cases}
-\frac{\rho}{2\pi c} & \parallel \mathbf{\xi} - \mathbf{u} \parallel = c \equiv \sqrt{D(\gamma - 1)e} \text{且} \lambda = e_{p}, \\
-0 & \text{其他}
+\frac{\rho}{2\pi c} & \parallel \mathbf{\xi} - \mathbf{u} \parallel = c \equiv \sqrt{D(\gamma - 1)e} \text{and} \lambda = e_{p}, \\
+0 & \text{otherwise}
 \end{cases}
 \tag{3.25}
 $$
@@ -577,8 +577,8 @@ $$
 
 $$
 f^{(eq)} = \begin{cases}
-\frac{\rho}{4\pi r^{2}} & \text{当}\left\| \xi - \mathbf{u} \right\| = \left\| \mathbf{r} \right\| = r, \\
-0 & \text{其他}. \\
+\frac{\rho}{4\pi r^{2}} & \left\| \xi - \mathbf{u} \right\| = \left\| \mathbf{r} \right\| = r, \\
+0 & \text{otherwise}. \\
 \end{cases}
 \tag{3.26}
 $$
