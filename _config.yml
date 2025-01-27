@@ -108,14 +108,16 @@ deploy:
 # Math render
 markdown_it_plus:
   plugins:
-    # - plugin:
-    #   name: '@iktakahiro/markdown-it-katex'
-    #   enable: false
     - plugin:
-      name: '@andatoshiki/markdown-it-katex'
+      name: '@iktakahiro/markdown-it-katex'
       enable: true
       options:
          strict: error
+    # - plugin:
+    #   name: '@andatoshiki/markdown-it-katex'
+    #   enable: true
+    #   options:
+    #      strict: error
 
 giscus:
   enable: true
