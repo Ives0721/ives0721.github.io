@@ -121,7 +121,7 @@ markdown_it_plus:
       name: '@iktakahiro/markdown-it-katex'
       enable: true
       options:
-         strict: false
+         strict: error
     # - plugin:
     #   name: '@andatoshiki/markdown-it-katex'
     #   enable: true
