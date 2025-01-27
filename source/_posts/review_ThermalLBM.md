@@ -219,7 +219,7 @@ $$
 
 其中压强 $p = \frac{2\rho e}{D}$ , 三阶张量 $\left\lbrack \mathbf{u\delta} \right\rbrack = \ u_{\alpha}\delta_{\beta\gamma} + u_{\beta}\delta_{\alpha\gamma} + u_{\gamma}\delta_{\alpha\beta}$ 。
 
-为满足这五个守恒方程的约束, 张量 $\displaystyle \sum_{i}^{}\overset{n个}{\overbrace{\mathbf{c}_{\sigma i}\mathbf{c}_{\sigma i}...\mathbf{c}_{\sigma i}}}\,$ 需要在 0~6 阶均为各向同性。因此Chen等 [^1] 使用的离散速度集表示为
+为满足这五个守恒方程的约束, 张量 $\displaystyle \sum_{i}^{}\overset{n}{\overbrace{\mathbf{c}_{\sigma i}\mathbf{c}_{\sigma i}...\mathbf{c}_{\sigma i}}}\,$ 需要在 0~6 阶均为各向同性。因此Chen等 [^1] 使用的离散速度集表示为
 
 $$
 \mathbf{c}_{\sigma i} = \mathbf{c}_{pki}^{'} = \mathbf{Perm}\left\{ k\left( \underbrace{\pm 1,\ldots, \pm 1}_{p} \mathbf{,} \overset{D - p}{\overbrace{0,...,0}} \right) \right\}
