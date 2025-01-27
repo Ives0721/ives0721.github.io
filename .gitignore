@@ -7,3 +7,4 @@ public/
 .deploy*/
 _multiconfig.yml
 IvesGithubPage.code-workspace
+package-lock.json

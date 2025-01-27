@@ -94,6 +94,8 @@ $$
 \left[\frac{\boldsymbol{c}_i - \boldsymbol{u}}{c_s^2} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^4}\right] \cdot \boldsymbol{F}
 $$
 
+另一种做法则是参照Ginzburg等[^Ginzburg2008]的写法，这里不做展开。
+
 <!--
 
 另一种做法则是参照Ginzburg等[^Ginzburg2008]的写法，将源项 $\mathrm{F}_i(\boldsymbol{r},t)$ 表示为

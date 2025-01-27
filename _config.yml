@@ -107,6 +107,7 @@ deploy:
 
 # Math render
 ## https://github.com/theme-kaze/hexo-theme-kaze/issues/24
+# config of hexo-renderer-markdown-it
 markdown_it_plus:
   highlight: true
   html: true
@@ -117,16 +118,11 @@ markdown_it_plus:
   typographer:
   quotes: “”‘’
   plugins:
-    - plugin:
-      name: '@iktakahiro/markdown-it-katex'
-      enable: true
-      options:
-         strict: error
-    # - plugin:
-    #   name: '@andatoshiki/markdown-it-katex'
-    #   enable: true
-    #   options:
-    #      strict: error
+      - plugin:
+          name: "@iktakahiro/markdown-it-katex"
+          enable: true
+          options:
+            strict: error
 
 giscus:
   enable: true
