@@ -17,6 +17,8 @@ categories:
 }
 </style>
 
+![](https://img.shields.io/badge/格子Boltzmann方法-LBE2NS-green)
+
 {% note default %}
 这是我之前的一次期末大报告作业，里面的内容也算是从其他文章里搬运的，在此重新誊抄出来。内容如有错误，欢迎各位指正。
 

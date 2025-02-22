@@ -17,6 +17,7 @@ categories:
 }
 </style>
 
+![](https://img.shields.io/badge/格子Boltzmann方法-Exact_difference_method-green)
 
 > 本文同步发表于[知乎](https://zhuanlan.zhihu.com/p/719081120)和[CSDN](https://blog.csdn.net/weixin_43890806/article/details/142057107)
 

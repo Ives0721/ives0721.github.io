@@ -18,6 +18,8 @@ categories:
 }
 </style>
 
+![](https://img.shields.io/badge/格子Boltzmann方法-热流体的LBE-green)
+
 [注] 本文同步发表在 [知乎](https://zhuanlan.zhihu.com/p/20525209524).
 
 > **宇宙安全声明：**  
