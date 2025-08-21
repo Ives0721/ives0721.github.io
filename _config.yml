@@ -139,7 +139,7 @@ giscus:
   # Available values: light | light_high_contrast | light_protanopia | light_tritanopia | dark | dark_high_contrast | dark_protanopia | dark_tritanopia | dark_dimmed | preferred_color_scheme | transparent_dark | noborder_light | noborder_dark | noborder_gray | cobalt | purple_dark
   theme: light
   # Available values: en | zh-CN
-  lang: zh-CN
+  lang: en
   # Place the comment box above the comments
   input_position: bottom
   # Load the comments lazily
