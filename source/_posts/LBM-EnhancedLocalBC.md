@@ -220,8 +220,7 @@ $$
 > (1) This scheme doesn't rely on the collision model.
 > (2) If $\boldsymbol{x}_{FF}$ is always available, we can remove the first-order time approximation, and convert the scheme into a two-node scheme.
 > (3) When $l = q$, the scheme is equivalent to that purposed by Geier et al. [(*Comput. Math. Appl.*, 70 (2015), pp. 507–547)](https://doi.org/10.1016/j.camwa.2015.05.001)
-
-$$
+> $$
 f_i (\vec{x}_{F}, t + \delta_t) = 
 \frac{1-q}{1+q} f_{\bar{i}} (\vec{x}_F, t) +
 \frac{q}{1+q} [f_{i}^{*}(\boldsymbol{x}_{F}, t) + 
@@ -229,8 +228,8 @@ f_{\bar{i}}^{*}(\boldsymbol{x}_{F}, t)] +
 \frac{2 w_i \rho_0}{(1+q)c_s^2} 
 \boldsymbol{c}_i \cdot \boldsymbol{u}(\vec{x}_b, t)
 $$
-
-If we still use $f_{\bar{i}}^{*} (\vec{x}_{FF}, t)$ rather than replacing it with $f_{\bar{i}} (\vec{x}_{F}, t)$, the scheme is equivalent to that purposed by Yu et al. [(*AIAA Paper*, 2003-0953, 2003.)](https://doi.org/10.2514/6.2003-953).
+>
+> If we still use $f_{\bar{i}}^{*} (\vec{x}_{FF}, t)$ rather than replacing it with $f_{\bar{i}} (\vec{x}_{F}, t)$, the scheme is equivalent to that purposed by Yu et al. [(*AIAA Paper*, 2003-0953, 2003.)](https://doi.org/10.2514/6.2003-953).
 
 ### Non-equilibrium state reconstruction
 
