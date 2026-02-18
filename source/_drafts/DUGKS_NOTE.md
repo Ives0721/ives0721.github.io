@@ -233,11 +233,13 @@ $$
 
 ## 分子速度空间的离散化 - 以低马赫数情况为例
 
+### 基本原理
+
 > 这一小节的内容看着很熟悉对吗？格子Boltzmann方法 (LBM) 在处理低马赫数场景时也是这么做的！
 
 <div class="note-block">
 
-前面两个小结已经介绍完了在某个特定分子速度 $\boldsymbol{\xi}_k$ 下的离散，这一节则是讨论构建离散速度集及其对应的权重集。
+前面两个小结已经介绍完了在某个特定分子速度 $\boldsymbol{\xi}_{k}$ 下的离散，这一节则是讨论构建离散速度集及其对应的权重集。
 
 它的最终目标是让分布函数的某些速度矩积分能够被近似，从而便于数值计算。比如：
 
@@ -254,7 +256,7 @@ W \equiv \sum_{\alpha} \mathcal{\psi}(\boldsymbol{\xi}_{\alpha}) \cdot (w_i f(\b
 \sum_{\alpha} \mathcal{\psi}(\boldsymbol{\xi}_{\alpha}) \cdot (w_i f^{eq}(\boldsymbol{\xi}_{\alpha}, W))
 $$
 
-上面的 $\mathcal{\psi}$ 既可以指代碰撞不变量，也可通指由 $\boldsymbol{\xi}$ 构成的所有多项式。但是我们还是可以做到让最简单的零阶矩和一阶矩保持一致的。
+上面的 $\mathcal{\psi}$ 既可以指代碰撞不变量，也可通指由 $\boldsymbol{\xi}$ 构成的所有多项式。这里我们简单介绍如何使用 Gauss-Hermite 积分做到让最简单的零阶矩和一阶矩保持一致的。
 
 </div>
 
@@ -309,7 +311,7 @@ $$
 此时，离散平衡态 $f^{eq}_{\boldsymbol{\alpha}}$ 就变成了
 
 $$
-f^{eq} (\boldsymbol{\xi}) = W_{\boldsymbol{\alpha}} \times 
+f^{eq}_{\boldsymbol{\alpha}} (\boldsymbol{\xi}) = \rho W_{\boldsymbol{\alpha}} \times 
 \left[
     1 + \frac{\boldsymbol{\xi} \cdot \boldsymbol{u}}{R T} + 
     \frac{(\boldsymbol{\xi} \cdot \boldsymbol{u})^2}{2 (R T)^2} - 
