@@ -401,7 +401,7 @@ $$
 $$
 \rho (\omega_0 + 4 \omega_1 + 4 \omega_5) + 
 \rho \|\boldsymbol{u}\|^2 \left[ \omega_1 \left(\frac{c^2}{c_s^4} - \frac{2}{c_s^2}\right) \right.\\
-\left. + \omega_2 \left(\frac{2 c^2}{c_s^4} - \frac{2}{c_s^2}\right)  - \frac{\omega_0}{2 c_s^2} \right] = \rho
+\left. + \omega_5 \left(\frac{2 c^2}{c_s^4} - \frac{2}{c_s^2}\right)  - \frac{\omega_0}{2 c_s^2} \right] = \rho
 \tag{2-3}
 $$
 
