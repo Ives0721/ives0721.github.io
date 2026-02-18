@@ -453,17 +453,19 @@ $$
 由于式(2-5)的左侧可被简化为
 
 $$
-(\omega_1 - 4 \omega_5) \frac{c^4}{c_s^4} \rho \delta_{ijkl} u_k u_l +
+\begin{aligned}
+(\omega_1 - 4 \omega_5) \frac{c^4}{c_s^4} \rho \delta_{ijkl} u_k u_l &+
 \rho c^2 \delta_{ij} \left[ (1 - \frac{\|\boldsymbol{u}\|^2}{2 c_s^2}) (2\omega_1 + 4\omega_5) \right. \\
-\left. + 2 \omega_5 \frac{\|\boldsymbol{u}\|^2 c^2}{c_s^4} \right] + 
-\rho u_i u_j w_5 \frac{c^2}{c_s^4}
+&\left. + 2 \omega_5 \frac{\|\boldsymbol{u}\|^2 c^2}{c_s^4} \right] + 
+\rho u_i u_j w_5 \frac{4 c^2}{c_s^4}
 \tag{2-6}
+\end{aligned}
 $$
 
 所以
 $$
 \begin{aligned}
-    w_5 \frac{c^2}{c_s^4} &= 1 \\
+    w_5 \frac{4 c^2}{c_s^4} &= 1 \\
     \omega_1 - 4 \omega_5 &= 0 \\
      \left(1 - \frac{\|\boldsymbol{u}\|^2}{2 c_s^2}\right) (2\omega_1 + 4\omega_5) + 2 \omega_5 \frac{\|\boldsymbol{u}\|^2 c^2}{c_s^4} &= \frac{p}{\rho c^2}
 \end{aligned}
