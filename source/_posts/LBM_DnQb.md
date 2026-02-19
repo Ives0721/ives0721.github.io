@@ -428,8 +428,10 @@ $$
 
 由式(2-3)，得：
 $$
+\begin{aligned}
 \omega_0 + 4 \omega_1 + 4 \omega_5 = 1 \\
 \omega_1 \left(\frac{c^2}{c_s^4} - \frac{2}{c_s^2}\right) + \omega_2 \left(\frac{2 c^2}{c_s^4} - \frac{2}{c_s^2}\right)  - \frac{\omega_0}{2 c_s^2} = 0
+\end{aligned}
 $$
 
 由式(2-4)，得：
