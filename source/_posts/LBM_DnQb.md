@@ -391,8 +391,8 @@ $$
 对于组别 3，同理可得
 $$
 \begin{aligned}
-    \sum_{\alpha\in[5-8]} e_{\alpha i} &= 0 ,& \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} &= 2\delta_{ij} \cdot (\sqrt{2} c)^2\\
-    \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} e_{\alpha k} &= 0 ,& \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} e_{\alpha k} e_{\alpha l} &= (4 \Delta^{(4)}_{ijkl} - 8 \delta^{(4)}_{ijkl}) \cdot (\sqrt{2} c)^4\\
+    \sum_{\alpha\in[5-8]} e_{\alpha i} &= 0 ,& \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} &= 4\delta_{ij} \cdot c^2\\
+    \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} e_{\alpha k} &= 0 ,& \sum_{\alpha\in[5-8]} e_{\alpha i} e_{\alpha j} e_{\alpha k} e_{\alpha l} &= (4 \Delta^{(4)}_{ijkl} - 8 \delta^{(4)}_{ijkl}) \cdot c^4\\
 \end{aligned}
 $$
 
