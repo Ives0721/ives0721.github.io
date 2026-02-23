@@ -65,16 +65,8 @@ window.addEventListener("DOMContentLoaded", () =>
 目前它比较简陋，仅在 PC 浏览器下的渲染效果较好。
 
 <div>
-    <table id="tfhover" class="tftable" border="1">
-        <tr>
-            <th>Mathfield</th>
-            <th>LaTeX</th>
-        </tr>
-        <tr>
-            <td style="width:50%"><math-field id="formula" style="font-size:1.5rem; display: block"> </math-field></td>
-            <td style="width:50%"><textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;width:100%"></textarea></td>
-        </tr>
-    </table>
+    <math-field id="formula" style="font-size:1.5rem; display: block; max-width=100%"> </math-field>
+    <textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;width:100%"></textarea>
     <script>
         const mf = document.getElementById("formula");
         const latex = document.getElementById("latex");
@@ -95,16 +87,8 @@ window.addEventListener("DOMContentLoaded", () =>
 
 ```html
 <div>
-    <table id="tfhover" class="tftable" border="1">
-        <tr>
-            <th>Mathfield</th>
-            <th>LaTeX</th>
-        </tr>
-        <tr>
-            <td style="width:50%"><math-field id="formula" style="font-size:1.5rem; display: block"> </math-field></td>
-            <td style="width:50%"><textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;font-size: 125%; width:100%"></textarea></td>
-        </tr>
-    </table>
+    <math-field id="formula" style="font-size:1.5rem; display: block; max-width=100%"> </math-field>
+    <textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;width:100%"></textarea>
     <script>
         const mf = document.getElementById("formula");
         const latex = document.getElementById("latex");
