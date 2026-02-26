@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () =>
 目前它比较简陋，仅在 PC 浏览器下的渲染效果较好。
 
 <div>
-    <math-field id="formula" style="font-size:1.5rem; display: block; max-width=100%"> </math-field>
+    <math-field id="formula" style="font-size:1.5rem; display: block; max-width:100%"> </math-field>
     <textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;width:100%"></textarea>
     <script>
         const mf = document.getElementById("formula");
@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () =>
 
 ```html
 <div>
-    <math-field id="formula" style="font-size:1.5rem; display: block; max-width=100%"> </math-field>
+    <math-field id="formula" style="font-size:1.5rem; display: block; max-width:100%"> </math-field>
     <textarea id="latex" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" style="display: flex;width:100%"></textarea>
     <script>
         const mf = document.getElementById("formula");
