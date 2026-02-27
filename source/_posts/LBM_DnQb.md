@@ -516,7 +516,7 @@ $$
 在文献[2]的原话中： 
 > $\Delta^{(n,m)}$ is the sum of all possible products of pairs of Kronecker delta symbols with $n$ and $m$ indices。
 
-具体到 $\Delta^{(4,2)} = \Delta^{(4,2)}_{ijklmn}$ ，它应该是 $\mathrm{C}_{6}^{2} = 15$ 个项的和。打个比方：第1个项是 $\delta_{ij}\Delta^{(4)}_{klmn}$；第2个项是 $\delta_{ik}\Delta^{(4)}_{jlmn}$；后续依次类推，直到把15个组合都轮换出来，然后求和。
+具体到 $\Delta^{(4,2)} = \Delta^{(4,2)}_{ijklmn}$ ，它应该是 $\mathrm{C}_{6}^{2} = 15$ 个项的和。打个比方：第1个项是 $\delta_{ij}\delta^{(4)}_{klmn}$；第2个项是 $\delta_{ik}\delta^{(4)}_{jlmn}$；后续依次类推，直到把15个组合都轮换出来，然后求和。
 
 # 参考
 
