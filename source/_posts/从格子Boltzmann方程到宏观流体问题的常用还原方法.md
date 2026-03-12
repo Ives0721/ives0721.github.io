@@ -189,7 +189,7 @@ $$f^{N}(x, \xi , t) H^{(n)}(\xi) = \omega(\xi) p(x, \xi, t)  \tag{21}$$
 
 $$a^{(n)} =\int \omega(\xi) p(x, \xi, t) d \xi = \sum_{a=1}^{d} w_a p(x, \xi_a, t) = \sum_{a=1}^{d} \frac{w_a}{\omega(\xi_a)} f^{N}(x, \xi_a, t) H^{(n)}(\xi_a)   \tag{22}$$
 
-式(22)中 $w_a$ 和 $ \boldsymbol{\xi}_a$ 是Gauss-Hermite积分的权重和特征向量（ $a=1,2,...,d$ ）。所以使用 $f^N (x,  \boldsymbol{\xi}_a, t)$ 表示 $f^N$ 的前 $N$ 阶矩在数学上可行。
+式(22)中 $w_a$ 和 $\boldsymbol{\xi}_a$ 是Gauss-Hermite积分的权重和特征向量（ $a=1,2,...,d$ ）。所以使用 $f^N (x,  \boldsymbol{\xi}_a, t)$ 表示 $f^N$ 的前 $N$ 阶矩在数学上可行。
 据此可定义离散化的分布函数 $f_a$ （ $a=1,2,...,d$ ），其对应的权重和特征方向为 $w_a$ 和 $\xi_a$ ：
 
 $$f_a (x,t) = \frac{w_a}{\omega( \boldsymbol{\xi}_a)} f(x,  \boldsymbol{\xi}_a, t) \tag{23}$$
