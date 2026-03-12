@@ -273,7 +273,7 @@ $$
 \begin{aligned}
     \Delta^{(2)}_{ij}&=\delta_{ij} \\
     \Delta^{(4)}_{ijkl}&=\delta_{ij}\delta_{kl} + \delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk} \\
-    \Delta^{(6)}_{ijklpq}&=\delta_{ij}\Delta^{(4)}_{ijkl} + \delta_{ik}\Delta^{(4)}_{jlpq} + \delta_{il}\Delta^{(4)}_{jkpq} + \delta_{ip}\Delta^{(4)}_{jklq} + \delta_{iq}\Delta^{(4)}_{jklp} 
+    \Delta^{(6)}_{ijklpq}&=\delta_{ij}\Delta^{(4)}_{klpq} + \delta_{ik}\Delta^{(4)}_{jlpq} + \delta_{il}\Delta^{(4)}_{jkpq} + \delta_{ip}\Delta^{(4)}_{jklq} + \delta_{iq}\Delta^{(4)}_{jklp} 
 \end{aligned}
 $$  
 
