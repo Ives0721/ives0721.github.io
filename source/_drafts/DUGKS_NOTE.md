@@ -233,9 +233,8 @@ $$
 
 ## 分子速度空间的离散化 - 以低马赫数情况为例
 
-### 基本原理
-
 > 这一小节的内容看着很熟悉对吗？格子Boltzmann方法 (LBM) 在处理低马赫数场景时也是这么做的！
+> 具体内容参见[“格子Boltzmann方法的DnQb模型”](https://ives0721.github.io/2026/02/18/LBM_DnQb/)部分。
 
 <div class="note-block">
 
@@ -286,7 +285,7 @@ $$
 \tag{10}
 $$
 
-根据上面的离散平衡态（式(9)），我们可以将权函数定义为 : $\displaystyle\exp\left( - \frac{|\boldsymbol{\xi}|^2}{2 R T} \right) (2 \pi R T)^{-D/2}$ 。假设所选求积公式的积分点及对应权重分别为 $\boldsymbol{\xi}_{\boldsymbol{\alpha}}$ 和 $\boldsymbol{W}_{\boldsymbol{\alpha}}$， 则式(10)的权重 $w_{\bold{i}}$ 表示为
+根据上面的离散平衡态（式(9)），我们可以将权函数定义为 : $\displaystyle\exp\left( - \frac{|\boldsymbol{\xi}|^2}{2 R T} \right) (2 \pi R T)^{-D/2}$ 。假设所选求积公式的积分点及对应权重分别为 $\boldsymbol{\xi}_{\boldsymbol{\alpha}}$ 和 $\boldsymbol{W}_{\boldsymbol{\alpha}}$， 则式(10)的权重 $w_{\boldsymbol{i}}$ 表示为
 
 $$
 w_{\boldsymbol{\alpha}} = \boldsymbol{W}_{\boldsymbol{\alpha}} (2 \pi R T)^{D/2} \exp\left( \frac{|\boldsymbol{\xi}_{\boldsymbol{\alpha}}|^2}{2 R T} \right)
