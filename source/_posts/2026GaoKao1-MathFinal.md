@@ -1,5 +1,5 @@
 ---
-title: 2026GaoKao1-MathFinal
+title: 2026年全国Ⅰ卷高考数学压轴题
 date: 2026-06-10 20:47:24
 tags:
 categories:
