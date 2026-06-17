@@ -4,8 +4,8 @@ tags:
   - 格子Boltzmann方法
   - 相场模型
 categories:
-  - - 格子Boltzmann方法
-  - - 相场模型
+  - 格子Boltzmann方法
+  - 相场模型
 date: 2026-04-03 10:28:49
 ---
 

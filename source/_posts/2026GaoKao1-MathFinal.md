@@ -90,7 +90,7 @@ $$
 
 打个比方，对于 $D(x_1)$：
 - $(x_1 + d) \in (x_1, +\infty)$ 是 $D(x_1)$ 的一部分；
-- 同时, $(x_1 + d) \in (-\infty,0]$ 是 $D(x_1)$ 的另一部分。
+- 同时， $(x_1 + d) \in (-\infty, 0]$ 是 $D(x_1)$ 的另一部分。
 
 因此 $D(x_1) = \{ d \in \mathbb{R} \vert d \in (-\infty, -x_1] \cup (0, +\infty) \}$。
 
