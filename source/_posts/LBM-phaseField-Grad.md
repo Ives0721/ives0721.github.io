@@ -174,3 +174,52 @@ $$
 \tag{6}
 $$
 
+
+## 关于中心差分
+
+假设我们采用中心差分形式，需要对 $\boldsymbol{x}-\boldsymbol{c}_i \delta_t$ 进行 Taylor 展开：
+
+$$
+\phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t) = \phi(\boldsymbol{x}) - (\boldsymbol{c}_i \delta_t) \cdot \nabla\phi(\boldsymbol{x}) + \frac{\delta_t^2}{2} (\boldsymbol{c}_i \cdot \nabla)^2 \phi(\boldsymbol{x}) + O(\delta_t^3)
+\tag{7}
+$$
+
+（A）将式(1)与式(7)相减，偶数阶项（零阶项 $\phi(\boldsymbol{x})$ 和二阶项）会被消去，得到：
+$$
+\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t) = 2(\boldsymbol{c}_i \delta_t) \cdot \nabla\phi(\boldsymbol{x}) + O(\delta_t^3)
+$$
+
+两边同时乘上 $w_i \boldsymbol{c}_i$ 并对所有方向求和：
+$$
+\sum_i w_i \boldsymbol{c}_i [\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t)] = 2\delta_t \nabla\phi(\boldsymbol{x}) \cdot \sum_i (w_i \boldsymbol{c}_i \boldsymbol{c}_i) + O(\delta_t^3)
+$$
+
+利用前面提到的二阶矩性质 $\sum_i w_i \boldsymbol{c}_i \boldsymbol{c}_i = c_s^2 \boldsymbol{I}$，等式右侧化简为 $2\delta_t c_s^2 \nabla\phi(\boldsymbol{x})$。因此：
+
+$$
+\nabla\phi(\boldsymbol{x}) = \frac{1}{2\delta_t c_s^2} \sum_i w_i \boldsymbol{c}_i [\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t)] + O(\delta_t^2)
+\tag{8}
+$$
+
+式(8)就是 Lee 等在文献[1]的式(64)的格式。
+
+（B）将式(1)与式(7)相加，奇数阶项（一阶项和三阶项）会被消去，得到：
+$$
+\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - 2 \phi(\boldsymbol{x}) + \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t) = \delta_t^2 (\boldsymbol{c}_i \cdot \nabla)^2 \phi(\boldsymbol{x}) + O(\delta_t^3)
+$$
+
+两边同时乘上 $w_i $ 并对所有方向求和：
+$$
+\sum_i w_i [\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - 2 \phi(\boldsymbol{x}) + \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t)] = \sum_i \delta_t^2 (\boldsymbol{c}_i \cdot \nabla)^2 \phi(\boldsymbol{x}) + O(\delta_t^3)
+$$
+
+同理可得：
+$$
+\nabla^2 \phi(\boldsymbol{x}) = \frac{1}{c_s^2 \delta_t^2} \sum_i w_i [\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - 2 \phi(\boldsymbol{x}) + \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t)] + O(\delta_t^2)
+\tag{9}
+$$
+
+式(9)就是 Lee 等在文献[1]的式(65)的格式。
+
+[1] Lee T，Lin C-L. **A stable discretization of the lattice Boltzmann equation for simulation of incompressible two-phase flows at high density ratio**[J]. _Journal of Computational Physics_，2005，206（1）：16-47. DOI:10.1016/j.jcp.2004.12.001.
+
