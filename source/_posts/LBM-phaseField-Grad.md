@@ -208,7 +208,7 @@ $$
 \phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - 2 \phi(\boldsymbol{x}) + \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t) = \delta_t^2 (\boldsymbol{c}_i \cdot \nabla)^2 \phi(\boldsymbol{x}) + O(\delta_t^3)
 $$
 
-两边同时乘上 $w_i $ 并对所有方向求和：
+两边同时乘上 $w_i$ 并对所有方向求和：
 $$
 \sum_i w_i [\phi(\boldsymbol{x}+\boldsymbol{c}_i \delta_t) - 2 \phi(\boldsymbol{x}) + \phi(\boldsymbol{x}-\boldsymbol{c}_i \delta_t)] = \sum_i \delta_t^2 (\boldsymbol{c}_i \cdot \nabla)^2 \phi(\boldsymbol{x}) + O(\delta_t^3)
 $$
