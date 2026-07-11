@@ -56,64 +56,55 @@ $$
 
 * $w_i$ 为 $\boldsymbol{c}_{i}$ 方向的权重， $\rho$ 和 $\boldsymbol{u}$ 为宏观密度和速度， $c_s$ 为DnQb模型的格子声速。
 
-* $\mathbb{F}_i$ 为源项在 $i$ 方向上的函数。
+* $\mathbb{F}_i$ 为源项 $\boldsymbol{F}$ 在 $i$ 方向上的函数。
 
-## 源项及宏观量的计算
+## TRT 的外力项
 
-// https://www.sciencedirect.com/science/article/pii/S1290072923006129
-// https://www.sciencedirect.com/science/article/pii/S0045793020301092
+> 下面记 $t_i = {w_i} / {c_s^2}$，以及 $F_{i}^{+} = \frac{1}{2} (\mathbb{F}_i + \mathbb{F}_{-i})$ 和 $F_{i}^{-} = \frac{1}{2} (\mathbb{F}_i - \mathbb{F}_{-i})$ 。
 
-这里以二阶矩模型的源项为例：
-
-$$
-\mathrm{F}_{i} = w_i \cdot 
-\left[\frac{\boldsymbol{c}_i - \boldsymbol{u}}{c_s^2} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^4}\right] \cdot \boldsymbol{F}
-$$
-
-其中 $\boldsymbol{F}$ 为外力加速度。此时宏观密度 $\rho$ 、速度 $\boldsymbol{u}$ 和动量 $\boldsymbol{j}$ 的计算表示为：
-$$
-\rho = \sum\limits_{i=0}^{b-1} f_i ,\quad
-\boldsymbol{j} = \rho \boldsymbol{u} = \frac{\boldsymbol{F}}{2} +  \sum\limits_{i=0}^{b-1} f_i \boldsymbol{c}_{i}
-$$
-
-令
-
-$$
-\begin{aligned}
-F_{i}^{+} &= \frac{1}{2} (\mathrm{F}_i + \mathrm{F}_{-i}), \\
-F_{i}^{-} &= \frac{1}{2} (\mathrm{F}_i - \mathrm{F}_{-i})
-\end{aligned}
-$$
-
-
-
-这里以 Guo 等[^Guo2002]的源项为例：
-
-$$
-\mathrm{F}_{i} = \left(1 - \frac{1}{2 \tau^{+}} \right) w_i \cdot 
-\left[\frac{\boldsymbol{c}_i - \boldsymbol{u}}{c_s^2} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^4}\right] \cdot \boldsymbol{F}
-$$
-
-另一种做法则是参照Ginzburg等[^Ginzburg2008]的写法，这里不做展开。
+Postma 等[^Postma2020]的研究对几种主流的源项模型进行了研究。不过他原文里列出的源项方程有些奇怪，我就照着[Bawazeer等的文章](https://doi.org/10.1016/j.jocs.2023.102034)写了两个简单的源项：
 
 <!--
-
-另一种做法则是参照Ginzburg等[^Ginzburg2008]的写法，将源项 $\mathrm{F}_i(\boldsymbol{r},t)$ 表示为
-
-$$
-\mathrm{F}_i(\boldsymbol{r},t) = \mathrm{F}_i^{+}(\boldsymbol{r},t) + \mathrm{F}_i^{-}(\boldsymbol{r},t)
-$$
-
-其中 $\mathrm{F}_i^{+} = \frac{1}{2} (\mathrm{F}_i + \mathrm{F}_{-i})$， $\mathrm{F}_i^{-} = \frac{1}{2} (\mathrm{F}_i - \mathrm{F}_{-i})$。
-
-下面记质量源 $M(\boldsymbol{r},t)$ 和体力 $\boldsymbol{F}(\boldsymbol{r},t)$ 。则宏观密度 $\rho$ 和动量 $\boldsymbol{j}$ 的计算表示为：
-
-$$
-\rho = \sum\limits_{i=0}^{b-1} f_i + \frac{M}{2} ,\quad
-\boldsymbol{j} = \rho \boldsymbol{u} = \sum\limits_{i=0}^{b-1} f_i \boldsymbol{c}_{i} + \frac{\boldsymbol{F}}{2}
-$$
+// https://www.sciencedirect.com/science/article/pii/S1290072923006129
+// https://www.sciencedirect.com/science/article/pii/S0045793020301092
 -->
 
+（1）Buick and Greated [^Buick2000]:
+
+$$
+\mathbb{F}_i = \left(1 - \frac{1}{2 \tau} \right) t_q \boldsymbol{c}_{i} \cdot
+\boldsymbol{F}
+$$
+
+转写为正负两项后表示为：
+
+$$
+F_{i}^{+} = 0, \quad
+F_{i}^{-} = \left(1 - \frac{1}{2 \tau^{-}} \right) t_i \boldsymbol{c}_{i} \cdot
+\boldsymbol{F}
+$$
+
+（2）Guo et al. [^Guo2002]:
+
+$$
+\mathbb{F}_{i} = \left(1 - \frac{1}{2 \tau} \right) w_i \cdot 
+\left[\frac{\boldsymbol{c}_i - \boldsymbol{u}}{c_s^2} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^4}\right] \cdot \boldsymbol{F}
+$$
+
+转写为正负两项后表示为：
+$$
+\begin{aligned}
+    F_i^{+} =& \left(1 - \frac{1}{2 \tau^{+}} \right) t_i \cdot \left[-\boldsymbol{u} + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u}) \boldsymbol{c}_i}{c_s^2}\right] \cdot \boldsymbol{F} \\
+    F_i^{-} =& \left(1 - \frac{1}{2 \tau^{-}} \right) t_i \boldsymbol{c}_i \cdot \boldsymbol{F} \\
+\end{aligned}
+$$ 
+
+宏观密度 $\rho$ 和动量 $\boldsymbol{j}$ 的计算均表示为：
+
+$$
+\rho = \sum\limits_{i=0}^{b-1} f_i ,\quad
+\boldsymbol{j} = \rho \boldsymbol{u} = \sum\limits_{i=0}^{b-1} f_i \boldsymbol{c}_{i} + \frac{\boldsymbol{F}}{2}
+$$
 
 ## 单步TRT-LBM的计算流程
 
@@ -227,3 +218,5 @@ $$
 [^Ginzburg2008]: Ginzburg, I., Verhaeghe, F., & d’Humières, D. (2008). Two-Relaxation-Time Lattice Boltzmann Scheme: About Parametrization, Velocity, Pressure and Mixed Boundary Conditions. Communications in Computational Physics, 3(2), 427–478.
 [^Guo2002]: Guo, Z., Zheng, C., & Shi, B. (2002). Discrete lattice effects on the forcing term in the lattice Boltzmann method. Phys. Rev. E, 65, 046308.
 [^Humières2009]: d’Humières, D., & Ginzburg, I. (2009). Viscosity independent numerical errors for Lattice Boltzmann models: From recurrence equations to “magic” collision numbers. Computers & Mathematics with Applications, 58(5), 823–840. https://doi.org/10.1016/j.camwa.2009.02.008
+[^Postma2020]: Postma B, Silva G. Force methods for the two-relaxation-times lattice Boltzmann[J]. Physical Review E, 2020, 102(6): 063307.
+[^Buick2000]: Buick, J. M., Greated, C. A. Gravity in a lattice Boltzmann model[J]. Physical Review E, 2000, 61(5): 5307--5320.
