@@ -1,14 +1,33 @@
 ---
-title: "双松弛时间（Two-relaxation-time）的格子 Boltzmann 方法"
+title: "【笔记】双松弛时间格子 Boltzmann 方法"
+date: 2026-07-14 17:28:40
 tags: [格子Boltzmann方法]
 categories:
 - [格子Boltzmann方法]
 ---
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js" integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<!--Katex style sheet for mobile-->
+<style type="text/css">
+@media only screen and (max-width: 600px) {
+  .katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+.container {
+    display: flex;
+}
+.col, p {
+    flex: 1;
+    font-family: "Arial";
+    text-align: left;
+}
+</style>
 
-
-# TRT-LBM
-
-双松弛时间的格子 Boltzmann 方法是多松弛时间（Multi-Relaxation-Time）LBM 的一种特殊形式。它仅具有两个松弛时间，分为对称和非对称两部分，同时保持了与 LBGK 模型一致的简单算法和计算效率。
+双松弛时间（Two-relaxation-time）格子 Boltzmann 方法是多松弛时间（Multi-Relaxation-Time）LBM 的一种特殊形式。它仅具有两个松弛时间，分为对称和非对称两部分，同时保持了与 LBGK 模型一致的简单算法和计算效率。
 
 ## 基本方程
 
@@ -62,7 +81,7 @@ $$
 
 > 下面记 $t_i = {w_i} / {c_s^2}$，以及 $F_{i}^{+} = \frac{1}{2} (\mathbb{F}_i + \mathbb{F}_{-i})$ 和 $F_{i}^{-} = \frac{1}{2} (\mathbb{F}_i - \mathbb{F}_{-i})$ 。
 
-Postma 等[^Postma2020]的研究对几种主流的源项模型进行了研究。不过他原文里列出的源项方程有些奇怪，我就照着[Bawazeer等的文章](https://doi.org/10.1016/j.jocs.2023.102034)写了两个简单的源项：
+Postma 等[^Postma2020]的研究对几种主流的源项模型进行了研究。不过他原文里列出的源项方程我还有些看不懂，我就照着[Bawazeer等的文章](https://doi.org/10.1016/j.jocs.2023.102034)抄了两个简单的源项：
 
 <!--
 // https://www.sciencedirect.com/science/article/pii/S1290072923006129
@@ -131,7 +150,7 @@ $$
 \begin{aligned}
 f_i(\boldsymbol{x}+\boldsymbol{c}_i \Delta t, t + \Delta t) - f_i(\boldsymbol{x}, t) &= - \left(\frac{1}{2 \tau^{+}} + \frac{1}{2 \tau^{-}}\right) [f_i(\boldsymbol{x}, t) - f^{(\mathrm{eq})}_i] \\
 &\quad -\left(\frac{1}{2 \tau^{+}} - \frac{1}{2 \tau^{-}}\right) [f_{-i}(\boldsymbol{x}, t) - f^{(\mathrm{eq})}_{-i}] \\
-&\quad + \mathrm{F}_i \Delta t
+&\quad + \mathbb{F}_i \Delta t
 \end{aligned}
 \tag{3}
 $$
