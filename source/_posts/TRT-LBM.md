@@ -255,8 +255,11 @@ $$
 
 代码我放在了[Github Gist](https://gist.github.com/Ives0721/742d6501df0767afc538fb3bcdff40bb)上，欢迎直接查看
 
+> TRT-LBM 的碰撞算子会对全部对称非平衡分量进行松弛，隐式保留了非流体力学行为的伪模态（ghost modes）。这会在高雷诺数工况下降低计算稳定性，比如上面的代码在高 Re 下会崩溃。 Yu 等的文章中对此有相关说明，并给出了基于矩展开的修正 [^Yu2026]。
+
 [^Ginzburg2008]: Ginzburg, I., Verhaeghe, F., & d’Humières, D. (2008). Two-Relaxation-Time Lattice Boltzmann Scheme: About Parametrization, Velocity, Pressure and Mixed Boundary Conditions. Communications in Computational Physics, 3(2), 427–478.
 [^Guo2002]: Guo, Z., Zheng, C., & Shi, B. (2002). Discrete lattice effects on the forcing term in the lattice Boltzmann method. Phys. Rev. E, 65, 046308.
 [^Humières2009]: d’Humières, D., & Ginzburg, I. (2009). Viscosity independent numerical errors for Lattice Boltzmann models: From recurrence equations to “magic” collision numbers. Computers & Mathematics with Applications, 58(5), 823–840. https://doi.org/10.1016/j.camwa.2009.02.008
 [^Postma2020]: Postma B, Silva G. Force methods for the two-relaxation-times lattice Boltzmann[J]. Physical Review E, 2020, 102(6): 063307.
 [^Buick2000]: Buick, J. M., Greated, C. A. Gravity in a lattice Boltzmann model[J]. Physical Review E, 2000, 61(5): 5307--5320.
+[^Yu2026]: Yu Y，Yu Y，Zhou Y，et al. Purified Two-Relaxation-Time Lattice Boltzmann Method: Removing Ghost Modes from TRT for Enhanced Stability[PP/OL]. arXiv（2026-02-06）. http://arxiv.org/abs/2602.06686. DOI:10.48550/arXiv.2602.06686.
