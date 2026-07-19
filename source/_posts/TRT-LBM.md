@@ -29,6 +29,8 @@ categories:
 
 双松弛时间（Two-relaxation-time）格子 Boltzmann 方法是多松弛时间（Multi-Relaxation-Time）LBM 的一种特殊形式。它仅具有两个松弛时间，分为对称和非对称两部分，同时保持了与 LBGK 模型一致的简单算法和计算效率。
 
+# Concepts
+
 ## 基本方程
 
 对于 $t$ 时刻的点 $\boldsymbol{x}$ 沿 $\boldsymbol{c}_i$ 方向的分布函数 $f_i(\boldsymbol{x}, t)$，其在 $\Delta t$ 时间步长内的演化为：
@@ -233,6 +235,25 @@ $$
 <!--
 1. Ginzburg, I., d’Humières, D. & Kuzmin, A. Optimal Stability of Advection-Diffusion Lattice Boltzmann Models with Two Relaxation Times for Positive/Negative Equilibrium. J Stat Phys 139, 1090–1143 (2010). https://doi.org/10.1007/s10955-010-9969-9
 -->
+
+# 实例代码
+
+为了练手，我写了一个双周期剪切流的代码。
+
+- 计算域： $[0,L] \times [0,L]$，其中 $L=2\pi$。
+- 网格大小： $\delta_x = L/N$ ($N=128$)。
+- 雷诺数： $Re = 1 / \nu = 100$。 其中 $\nu$ 为流体运动粘度 (Physical)。
+- 时间步 $\delta_t$ ： 用 LBM 中 $\tau^{+}$ 的关系反推。
+- 速度场
+$$
+\begin{cases}
+    u_x =& U_0 \tanh (\sigma\, (\frac{1}{4} - |\frac{y}{L} - \frac{1}{2}| )) \\
+    u_y =& U_0 \delta \sin (2 \pi \, (\frac{x}{L} + \frac{1}{2}) )
+\end{cases}
+$$
+- 压强场 $p$ ： 求解压力泊松方程。由于这个场是周期的，我就用伪谱法算。
+
+代码我放在了[Github Gist](https://gist.github.com/Ives0721/742d6501df0767afc538fb3bcdff40bb)上，欢迎直接查看
 
 [^Ginzburg2008]: Ginzburg, I., Verhaeghe, F., & d’Humières, D. (2008). Two-Relaxation-Time Lattice Boltzmann Scheme: About Parametrization, Velocity, Pressure and Mixed Boundary Conditions. Communications in Computational Physics, 3(2), 427–478.
 [^Guo2002]: Guo, Z., Zheng, C., & Shi, B. (2002). Discrete lattice effects on the forcing term in the lattice Boltzmann method. Phys. Rev. E, 65, 046308.
