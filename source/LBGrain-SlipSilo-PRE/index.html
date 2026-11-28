@@ -268,7 +268,7 @@ This simple geometry introduces complex transient dynamics and intricate boundar
 
 ## Discharge of granular silo with lateral orifice
 
-[Section 2](#modelformulation) establishes a continuum framework that couples the $\mu(I)$ rheology and the Navier slip boundary condition within the lattice Boltzmann method.
+[Section 2](#model_formulation) establishes a continuum framework that couples the $\mu(I)$ rheology and the Navier slip boundary condition within the lattice Boltzmann method.
 This section integrates the discrete element method (DEM) and our LBM framework to study the discharge of a granular silo with a lateral orifice.
 Specifically, we investigate how prolonged particle-wall contact and asymmetric orifice govern the flow regime transition and modify the macroscopic discharge characteristics.
 
@@ -297,9 +297,9 @@ The tangent shear stiffness $k_t$ and normal shear stiffness $k_n$ are
 where $r_{ab} = 2 r_a r_b/(r_a + r_b)$. The normal contact force $\mathrm{F}_n$ and the tangential contact force $\mathrm{F}_t$ are
 \begin{equation}
 \begin{aligned}
-    \mathrm{F}_n &= \frac{2 E}{3 (1-\nu^2)} \sqrt{\frac{ r_{ab} }{2}} |\Delta_n|^{3/2} - 2 \beta_n \sqrt{m_c k_n} \tilde{u}_{n},\\
+    \mathrm{F}_n &= \frac{2 E}{3 (1-\nu^2)} \sqrt{\frac{ r_{ab} }{2}} |\Delta_n|^{3/2} + 2 \beta_n \sqrt{m_c k_n} \tilde{u}_{n},\\
     \mathrm{F}_t &= \begin{cases}
-        k_t {\Delta_t} - 2 \beta_t \sqrt{m_c k_n} \tilde{u}_{t}, &  |\mathrm{F}_t| \leq \mu_p |\mathrm{F}_n| \\
+        k_t {\Delta_t} + 2 \beta_t \sqrt{m_c k_n} \tilde{u}_{t}, &  |\mathrm{F}_t| \leq \mu_p |\mathrm{F}_n| \\
         \mu_p \mathrm{F}_n \cdot \text{sign}(\Delta_t), & |\mathrm{F}_t| > \mu_p |\mathrm{F}_n|
     \end{cases},
 \end{aligned}
@@ -333,7 +333,7 @@ This DEM simulation setup represents an idealization of an infinitely thick silo
 
 The two-dimensional computational domain of LBM continuum simulations is constructed based on the $xOy$ plane perspective shown in [Fig. 3(a)](#Fig03), reserving ample space outside the silo to avoid explicit modeling of the outlet boundary for the lateral orifice.
 Assume that the solid volume fraction of granular flows $\Phi$ takes the typical value of dense packing granular media $\Phi = 0.6$, then the density of continuum is $\rho_f = \rho_p \Phi=1590\,\mathrm{kg/m^3}$.
-The apparent viscosity of the granular continuum is computed by Eq. \eqref{eqn:LBM_muI_viscosity}. The lateral walls of the silo are modeled as slip boundaries with Navier slip length $l_s$, with its implementation in [Sec. 2.3](#modelformulation/mesoscopicimplementationofnavierslipboundarycondition).
+The apparent viscosity of the granular continuum is computed by Eq. \eqref{eqn:LBM_muI_viscosity}. The lateral walls of the silo are modeled as slip boundaries with Navier slip length $l_s$, with its implementation in [Sec. 2.3](#model_formulation/mesoscopic_implementation_of_navier_slip_boundary_condition).
 The bottom wall of the silo and other walls outside the silo in the computational domain are no-slip boundaries. 
 
 
@@ -1006,7 +1006,8 @@ This research was developed under the support of the Guangdong basic and applied
 
 [40] A. Franci and M. Cremonesi, [Journal of Computational Physics **378**, 257 (2019)](https://doi.org/10.1016/j.jcp.2018.11.011). 
 
-[41] S. Hou, J. Sterling, S. Chen, and G. D. Doolen, A lattice Boltzmann subgrid model for high Reynolds number flows (1994), [arxiv:comp-gas/9401004](http://arxiv.org/abs/comp-gas/9401004). 
+[41] S. Hou, J. Sterling, S. Chen, and G. D. Doolen, A Lattice Boltzmann Subgrid Model for High Reynolds Number Flows, in [_Pattern Formation and Lattice Gas Automata_](https://doi.org/10.1090/fic/006/12), Vol. 6 (Fields Institute Communications) pp. 151-166. {Also available in [arxiv:comp-gas/9401004](http://arxiv.org/abs/comp-gas/9401004).}
+
 
 [42] D. Conrad, A. Schneider, and M. B ohle, [Journal of Computational Physics **301**, 218 (2015)](https://doi.org/10.1016/j.jcp.2015.07.066). 
 
