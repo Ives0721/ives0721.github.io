@@ -42,10 +42,10 @@
 </div>
 
 <article-abstract>
-Slip on the boundaries is ubiquitous in granular flows, yet their influence on silo discharge dynamics requires quantitative investigation.
+Slip on the boundaries is ubiquitous in granular flows, yet its influence on silo discharge dynamics requires quantitative investigation.
 We develop a lattice Boltzmann framework for dense granular flows that incorporate Navier slip boundary condition, in which the Navier slip length $l_s$ controls a weight coefficient interpolating between the no-slip and free-slip limits.
 In the lattice Boltzmann method (LBM) simulation of the narrow granular silo with lateral orifice, the $\mu(I)$ rheological parameters and lateral Navier slip length $l_s$ are directly extracted from the corresponding data from the discrete element method, and reproducing both the macroscopic discharge and the internal flow structures over a range of orifice heights $D$.
-Increasing either $l_s$ or $D$ independently will reduce lateral wall resistance and accelerates the flow at the wall and around the orifice, yet the slip-induced enhancement on discharge rate is effective only when $l_s$ smaller than the particle diameter.
+Increasing either $l_s$ or $D$ independently will reduce lateral wall resistance and accelerate the flow at the wall and around the orifice, yet the slip-induced enhancement on discharge rate is effective only when $l_s$ smaller than the particle diameter.
 This saturation phenomenon stems from the geometric confinement of the narrow silo, in which the lateral boundary layer occupies a constant fraction of the cross-section, confining the slip effect to the region near the wall, and causing the shear band thickness to be independent of both $D$ and $l_s$.
 Based on the LBM simulation results, we propose a scaling law of steady state discharge rate, in which the no-slip discharge rate follows the classical Hagen-Beverloo correlation, and the slip-induced enhancement is captured by a nonlinear, rapidly saturating amplification factor that depends on $l_s$.
 These findings provide fundamental physical insights into the Navier slip effect in granular silo flows, and they offer a robust lattice Boltzmann framework of granular continuum simulations.
@@ -221,7 +221,7 @@ As illustrated in [Fig. 2(a)](#Fig02), the fluid slip velocity at the wall $u_{\
 <figure>
     <img id="Fig02" src="./imgs/Figure-NavierSlipScheme.png">
     <figcaption>
-        Figure 2: The relationship between the slip coefficient $s_c$ in LBM  and the Navier slip length $l_s$ of the boundary (in lattice unit). Figure (a) represents the sketch of velocity profile near the boundary, figure (b) is the corresponding LBM representation, and figure (c) plots $l_s$ against $s_c$ for different effective LBM relaxation times $\tau_{\text{eff}} = [0.6, 1.0, 1.4]$.
+        Figure 2: The relationship between the slip coefficient $s_c$ in LBM  and the Navier slip length $l_s$ of the boundary (in lattice unit). Panel (a) represents the sketch of velocity profile near the boundary, while (b) is the corresponding LBM representation, and (c) plots $l_s$ against $s_c$ for different effective LBM relaxation times $\tau_{\text{eff}} = [0.6, 1.0, 1.4]$.
     </figcaption>
 </figure>
 
@@ -791,7 +791,7 @@ Therefore, in DEM simulations, the change of random seed only affects the initia
 
 The coarse graining technique is applied to discrete particle data to extract continuum fields related to granular flow rheology, such as density, velocity and stress tensor.
 In this paper, the coarse graining method proposed by Weinhart et al. [54] is introduced.
-Assume a mono-disperse granular system consists of $N$ spheres, where the $i$-th spheres located at $\boldsymbol{r}_i(t)$ with its mass $m_i$ and velocity $\boldsymbol{u}_i(t)$ ($i \in [1,...,N]$). The Gaussian function $W(\boldsymbol{r})$ is introduced as coarse graining weight function:
+Assume a mono-disperse granular system consists of $N$ spheres, where the $i$-th spheres located at $\boldsymbol{r}_i(t)$ with mass $m_i$ and velocity $\boldsymbol{u}_i(t)$ ($i \in [1,...,N]$). The Gaussian function $W(\boldsymbol{r})$ is introduced as the coarse graining weight function:
 \begin{equation}
     W(\boldsymbol{r}) = \begin{cases}
     \exp{\left(- \frac{\vert\boldsymbol{r}\vert^2}{2 \mathrm{w}} \right) / V_w} ,& 
@@ -800,7 +800,7 @@ Assume a mono-disperse granular system consists of $N$ spheres, where the $i$-th
     \end{cases},
     \tag{C1}
 \end{equation}
-where the $\mathrm{w}$ is coarse graining width, $\mathrm{c} = 3 \mathrm{w}$ is cut-off length, and $V_w$ is the coefficient defined as [55]
+where the $\mathrm{w}$ is coarse graining width, $\mathrm{c} = 3 \mathrm{w}$ is the cut-off length, and $V_w$ is the coefficient defined as [55]
 \begin{equation}
     V_w = 2 \sqrt{2} \cdot \mathrm{w}^3 \pi^{\frac{3}{2}} \mathrm{erf}\left( \frac{\mathrm{c}}{\sqrt{2} \mathrm{w}} \right) - 4 \mathrm{c} \mathrm{w}^2 \pi \exp{\left( \frac{- \mathrm{c}^2}{2 \mathrm{w}^2} \right)}.
     \tag{C2}
@@ -809,12 +809,12 @@ Weinhart et al. [54] recommend $\mathrm{w}/d_p \in [0.75, 1.25]$, where the $d_p
 In this study, we use $\mathrm{w}=d_p$.
 
 
-For the coarse grained data at location $\boldsymbol{r}$ at time $t$, its coarse grained density $\rho(\boldsymbol{r}, t)$ is
+For the coarse grained data at location $\boldsymbol{r}$ at time $t$, the coarse grained density $\rho(\boldsymbol{r}, t)$ is
 \begin{equation}
     \rho(\boldsymbol{r}, t) = \sum\limits_{i \in Q} m_i W(\boldsymbol{r} - \boldsymbol{r}_{i}(t)),
     \tag{C3}
 \end{equation}
-and its coarse grained velocity $\boldsymbol{U}(\boldsymbol{r}, t)$ is obtained by coarse grained momentum $\boldsymbol{j}(\boldsymbol{r}, t)$,
+and the coarse grained velocity $\boldsymbol{U}(\boldsymbol{r}, t)$ is obtained by coarse grained momentum $\boldsymbol{j}(\boldsymbol{r}, t)$,
 \begin{equation}
     \boldsymbol{j}(\boldsymbol{r}, t)  = \rho(\boldsymbol{r}, t) \cdot \boldsymbol{U}(\boldsymbol{r}, t) = \sum\limits_{i \in Q} m_i \boldsymbol{u}_i (t) \cdot W(\boldsymbol{r} - \boldsymbol{r}_{i}(t)).
     \tag{C4}
@@ -844,13 +844,13 @@ The kinetic part in Eq. \eqref{eqn:Appendix_CG_sigma} is defined as
     \sigma_{\alpha\beta}^{(k)}(\boldsymbol{r}, t) = \sum\limits_{i \in N} m_i v_{i,\alpha}^{'} v_{i,\beta}^{'} W(\boldsymbol{r} - \boldsymbol{r}_{i}(t)),
     \tag{C7}
 \end{equation}
-where $\boldsymbol{v}_{i}^{'} = \boldsymbol{u}_i(t) - \boldsymbol{U}(\boldsymbol{r}, t)$ is the velocity fluctuation of $i$-th particle, and $v_{i,\alpha}^{'}$ is the $\alpha$ component of $\boldsymbol{v}_{i}^{'}$.
+where $\boldsymbol{v}_{i}^{'} = \boldsymbol{u}_i(t) - \boldsymbol{U}(\boldsymbol{r}, t)$ is the velocity fluctuation of the $i$-th particle, and $v_{i,\alpha}^{'}$ is the $\alpha$ component of $\boldsymbol{v}_{i}^{'}$.
 The contact force part in Eq. \eqref{eqn:Appendix_CG_sigma} is defined as
 \begin{equation}
     \sigma_{\alpha\beta}^{(c)}(\boldsymbol{r}, t) = \sum\limits_{i \in N} \sum\limits_{j \in \tilde{N}}^{j \neq i} F_{ij,\alpha} l_{ij,\beta} \int_{0}^{1} W(\boldsymbol{r} - \boldsymbol{r}_{i}(t) + s \boldsymbol{l}_{ij}) \mathrm{d}s,
     \tag{C8}
 \end{equation}
-where $\tilde{N}$ is a set contains all particle contacted with the $i$-th particle, $\boldsymbol{F}_{ij}$ is contact force vector received by particle $i$ from $j$, and $\boldsymbol{l}_{ij}$ is contact branch vector between two particles (pointing from $i$ to $j$).
+where $\tilde{N}$ is a set containing all particle contacted by the $i$-th particle, $\boldsymbol{F}_{ij}$ is contact force vector received by particle $i$ from $j$, and $\boldsymbol{l}_{ij}$ is contact branch vector between two particles (pointing from $i$ to $j$).
 
 
 (##) Appendix D: Sensitivity of rheological parameters <span id="AppendixD"></span>
