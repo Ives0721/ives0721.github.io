@@ -76,10 +76,10 @@ $$
 \boldsymbol{u}(\boldsymbol{r}, t) = \boldsymbol{j}(\boldsymbol{r}, t) / \rho(\boldsymbol{r}, t)
 $$
 
-{% note %}  
-根据 $W(\boldsymbol{r})$ 的定义，当 $\vert \boldsymbol{r} - \boldsymbol{r}_{i}(t) \vert \ge c$ 时， $W(\boldsymbol{r} - \boldsymbol{r}_{i}(t)) = 0$。  
+
+> 根据 $W(\boldsymbol{r})$ 的定义，当 $\vert \boldsymbol{r} - \boldsymbol{r}_{i}(t) \vert \ge c$ 时， $W(\boldsymbol{r} - \boldsymbol{r}_{i}(t)) = 0$。  
 因此在实际计算中可根据这一点跳过某些球的计算。  
-{% endnote %}
+
 
 ## 应力张量的计算
 
@@ -108,11 +108,11 @@ $$
 - $\boldsymbol{F}_{ij}$ 是球 $i$ 所受到的来自球 $j$ 接触的力， $F_{ij,\alpha}$ 为其 $\alpha$ 方向分量；
 - $\boldsymbol{l}_{ij}$ 是球 $i$ 与球 $j$ 的接触矢量（从 $i$ 向 $j$）， $l_{ij,\alpha}$ 为其 $\alpha$ 方向分量。
 
-{% note %}  
-在实际操作中，对于
+
+> 在实际操作中，对于
 $$\int_{0}^{1} W(\boldsymbol{r} - \boldsymbol{r}_{i}(t) + s \boldsymbol{l}_{ij}) \mathrm{d}s$$
 我选择使用**复化 Simpson 积分**计算其数值，以简化操作。  
-{% endnote %}
+
 
 
 # 多种颗粒的粗粒化

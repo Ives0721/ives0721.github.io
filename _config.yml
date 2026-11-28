@@ -119,12 +119,12 @@ markdown_it_plus:
   linkify: true
   typographer:
   quotes: “”‘’
-  plugins:
-      - plugin:
-          name: "@iktakahiro/markdown-it-katex"
-          enable: true
-          options:
-            strict: error
+  # plugins:
+  #     - plugin:
+  #         name: "@iktakahiro/markdown-it-katex"
+  #         enable: false
+  #         options:
+  #           strict: error
 
 giscus:
   enable: true

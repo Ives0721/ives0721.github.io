@@ -42,13 +42,13 @@
 </div>
 
 <article-abstract>
-Slip on the boundaries are ubiquitous in granular flows, yet their influence on silo discharge dynamics requires quantitative investigation.
+Slip on the boundaries is ubiquitous in granular flows, yet their influence on silo discharge dynamics requires quantitative investigation.
 We develop a lattice Boltzmann framework for dense granular flows that incorporate Navier slip boundary condition, in which the Navier slip length $l_s$ controls a weight coefficient interpolating between the no-slip and free-slip limits.
-In the lattice Boltzmann method (LBM) simulation of the narrow granular silo with lateral orifice, the $\mu(I)$ rheological parameters and lateral Navier slip length $l_s$ are directly extracted from the corresponding data from discrete element method (DEM), and reproducing both the macroscopic discharge and the internal flow structures over a range of orifice heights $D$.
+In the lattice Boltzmann method (LBM) simulation of the narrow granular silo with lateral orifice, the $\mu(I)$ rheological parameters and lateral Navier slip length $l_s$ are directly extracted from the corresponding data from the discrete element method, and reproducing both the macroscopic discharge and the internal flow structures over a range of orifice heights $D$.
 Increasing either $l_s$ or $D$ independently will reduce lateral wall resistance and accelerates the flow at the wall and around the orifice, yet the slip-induced enhancement on discharge rate is effective only when $l_s$ smaller than the particle diameter.
-This saturation phenomenon stems from the geometric confinement of the narrow silo, in which the lateral boundary layer occupies a constant fraction of the cross-section, confining the slip effect to the region near the wall, and making the shear band thickness to be independent of both $D$ and $l_s$.
+This saturation phenomenon stems from the geometric confinement of the narrow silo, in which the lateral boundary layer occupies a constant fraction of the cross-section, confining the slip effect to the region near the wall, and causing the shear band thickness to be independent of both $D$ and $l_s$.
 Based on the LBM simulation results, we propose a scaling law of steady state discharge rate, in which the no-slip discharge rate follows the classical Hagen-Beverloo correlation, and the slip-induced enhancement is captured by a nonlinear, rapidly saturating amplification factor that depends on $l_s$.
-These findings provide fundamental physical insights into the Navier slip effect in granular silo flows, and offer a robust lattice Boltzmann framework of granular continuum simulations.
+These findings provide fundamental physical insights into the Navier slip effect in granular silo flows, and they offer a robust lattice Boltzmann framework of granular continuum simulations.
 </article-abstract>
 
 <p>
@@ -81,7 +81,7 @@ Continuum modeling offers a computationally efficient approach to probing such q
 The $\mu(I)$ rheology [14] has emerged as a robust constitutive model for dense granular flows, relating the friction coefficient $\mu$ to the dimensionless inertial number $I$.
 The friction coefficient increases from a minimum value $\mu_s$ (the internal Coulomb friction of the material) with $I$, a dependence that has been described in both local and nonlocal formulations [15].
 The $\mu(I)$ rheology has been successfully applied to silo flows.
-Staron et al. [16] and Tian et al. [17] systematically compared continuum predictions with the simulation results obtained from discrete element method (DEM).
+Staron et al. [16] and Tian et al. [17] systematically compared continuum predictions with the simulation results obtained from the discrete element method (DEM).
 Lin and Yang [18] showed that nonlocal effects become important when the orifice is narrow.
 Dunatunga
 and Kamrin [19] and Zhou et al. [6] used continuum models to study the mass discharge rate and silo clogging, respectively.
@@ -121,12 +121,12 @@ Conclusions are drawn in [Sec. 5](#conclusions).
 The lattice Boltzmann method (LBM) is based on the mesoscopic gas kinetic theory, rather than Navier-Stokes equation for continuum fluid. LBM solves the kinetic evolutions of finite discretized distribution functions, and reconstructs the macroscopic flow field by the arithmetic calculations of simplified numerical integration in phase space [27].
 For the density distribution function $f_i (\boldsymbol{x}, t)$ located at $\boldsymbol{x}$ and moving with the discrete velocity $\boldsymbol{c}_i$, its governing equation at time $t$ is written as [35]
 \begin{equation}
-    f_i (\boldsymbol{x} + \boldsymbol{c}_i \delta_t, t+\delta_t) - f_i (\boldsymbol{x}, t) = -\frac{1}{\tau} \left[ f_i (\boldsymbol{x}, t) - f_i^{eq} (\boldsymbol{x}, t) \right] + F_i \delta_t,
+    f_i (\boldsymbol{x} + \boldsymbol{c}_i \delta_t, t+\delta_t) - f_i (\boldsymbol{x}, t) = -\frac{1}{\tau} \left[ f_i (\boldsymbol{x}, t) - f_i^{\text{eq}} (\boldsymbol{x}, t) \right] + F_i \delta_t,
 \label{eqn:LBGK}
 \end{equation} 
-where $\delta_t$ denotes the time step, $\tau$ is the dimensionless relaxation time in LBM. The symbol $f_i^{eq}$ denotes the second-order truncated Maxwell equilibrium state reconstructed from the local fluid density $\rho$ and  fluid velocity $\boldsymbol{u}$,
+where $\delta_t$ denotes the time step, $\tau$ is the dimensionless relaxation time in LBM. The symbol $f_i^{\text{eq}}$ denotes the second-order truncated Maxwell equilibrium state reconstructed from the local fluid density $\rho$ and  fluid velocity $\boldsymbol{u}$,
 \begin{equation}
-    f_i^{eq} = w_i \rho \left[
+    f_i^{\text{eq}} = w_i \rho \left[
         1 + \frac{\boldsymbol{c}_i \cdot \boldsymbol{u}}{c_s^2}
         + \frac{(\boldsymbol{c}_i \cdot \boldsymbol{u})^2}{2 c_s^4}
         - \frac{\boldsymbol{u} \cdot \boldsymbol{u}}{2 c_s^2}
@@ -190,9 +190,9 @@ where $\mu_s$, $\mu_d$, and $I_0$ are rheological parameters, $\rho_p$ is the pa
 The shear rate $\dot{\gamma}$ is defined as $\dot{\gamma} = \sqrt{2 \dot{\gamma}_{\alpha\beta} \dot{\gamma}_{\alpha\beta}}$, where $\dot{\gamma}_{\alpha\beta} = \frac{1}{2} \left( \partial u_{\alpha} / \partial x_{\beta} + \partial u_{\beta} / \partial x_{\alpha} \right)$ is the strain rate tensor, with $\alpha, \beta$ denoting spatial coordinate indices.
 
 
-The apparent dynamic viscosity of the granular continuum is obtained from the $\mu(I)$ model as $\eta_{app} = \mu(I) p/ \dot{\gamma}$. To regularize the numerical singularity of $\eta_{app}$ when $\dot{\gamma}$ approaches zero, we adopt the Papanastasiou regularization [32, 40], which yields
+The apparent dynamic viscosity of the granular continuum is obtained from the $\mu(I)$ model as $\eta_{\text{app}} = \mu(I) p/ \dot{\gamma}$. To regularize the numerical singularity of $\eta_{\text{app}}$ when $\dot{\gamma}$ approaches zero, we adopt the Papanastasiou regularization [32, 40], which yields
 \begin{equation}
-    \eta_{app} = 
+    \eta_{\text{app}} = 
     \frac{p \mu_s}{\dot{\gamma}} \left[ 1 - \exp\left(-\frac{\dot{\gamma}}{\lambda}\right) \right] + 
     \frac{(\mu_d - \mu_s) p}{I_0 \sqrt{p / \rho_p} + d_p \dot{\gamma}} d_p,
     \label{eqn:LBM_muI_viscosity}
@@ -203,17 +203,17 @@ A minimum pressure threshold $p_{\min} = \rho_p g d_p$ is additionally imposed t
 
 Within the LBM framework, the strain rate tensor $\dot{\gamma}_{\alpha\beta}$ is computed locally from the second order moment of the non-equilibrium distribution functions [41],
 \begin{equation}
-    \sum_{i=0}^{8} c_{i\alpha} c_{i\beta} f_{i}^{neq} = -2 c_s^2 \rho \tau_{eff} \dot{\gamma}_{\alpha\beta},
+    \sum_{i=0}^{8} c_{i\alpha} c_{i\beta} f_{i}^{\text{neq}} = -2 c_s^2 \rho \tau_{\text{eff}} \dot{\gamma}_{\alpha\beta},
     \label{eqn:LBGK_gamma}
 \end{equation}
-where $f_{i}^{neq} = f_i - f_{i}^{eq}$ is the non-equilibrium distribution function, and $\tau_{eff} = \eta_{app} / (\rho c_s^2) + 1/2$ is the effective LBM relaxation time.
-Following Conrad et al. [42], the explicit update procedure of $\tau_{eff}$ at time step $t+\delta_t$ proceeds as follows.
-First, $\tau_{eff}(\boldsymbol{x}, t)$ is used in Eq. \eqref{eqn:LBGK_gamma} to compute $\dot{\gamma}_{\alpha\beta}(\boldsymbol{x}, t)$.
-The shear rate $\dot{\gamma} = \sqrt{2 \dot{\gamma}_{\alpha\beta}(\boldsymbol{x},t) \dot{\gamma}_{\alpha\beta}(\boldsymbol{x},t)}$ is then substituted into Eq. \eqref{eqn:LBM_muI_viscosity} to obtain $\eta_{app}(\boldsymbol{x}, t+\delta_t)$. 
-Finally, $\eta_{app}(\boldsymbol{x}, t+\delta_t)$ is substituted into Eq. \eqref{eqn:LBM_tau} to update $\tau_{eff}(\boldsymbol{x}, t+\delta_t)$, completing the relaxation time required in Eq. \eqref{eqn:LBGK}.
+where $f_{i}^{\text{neq}} = f_i - f_{i}^{\text{eq}}$ is the non-equilibrium distribution function, and $\tau_{\text{eff}} = \eta_{\text{app}} / (\rho c_s^2) + 1/2$ is the effective LBM relaxation time.
+Following Conrad et al. [42], the explicit update procedure of $\tau_{\text{eff}}$ at time step $t+\delta_t$ proceeds as follows.
+First, $\tau_{\text{eff}}(\boldsymbol{x}, t)$ is used in Eq. \eqref{eqn:LBGK_gamma} to compute $\dot{\gamma}_{\alpha\beta}(\boldsymbol{x}, t)$.
+The shear rate $\dot{\gamma} = \sqrt{2 \dot{\gamma}_{\alpha\beta}(\boldsymbol{x},t) \dot{\gamma}_{\alpha\beta}(\boldsymbol{x},t)}$ is then substituted into Eq. \eqref{eqn:LBM_muI_viscosity} to obtain $\eta_{\text{app}}(\boldsymbol{x}, t+\delta_t)$. 
+Finally, $\eta_{\text{app}}(\boldsymbol{x}, t+\delta_t)$ is substituted into Eq. \eqref{eqn:LBM_tau} to update $\tau_{\text{eff}}(\boldsymbol{x}, t+\delta_t)$, completing the relaxation time required in Eq. \eqref{eqn:LBGK}.
 
 
-### Mesoscopic implementation of Navier slip boundary condition
+### Mesoscopic implementation of the Navier slip boundary condition
 
 The Navier slip boundary condition is employed to capture the slip behavior of granular continua on solid walls, which has been validated in previous studies on granular flows [23-26].
 As illustrated in [Fig. 2(a)](#Fig02), the fluid slip velocity at the wall $u_{\text{slip}}$ is expressed as $u_{\text{slip}} = l_s \, \dot{\gamma}_w$, where $\dot{\gamma}_w$ is the shear rate at the wall ($y=0$ in [Fig. 2](#Fig02)), and $l_s$ is the Navier slip length.
@@ -221,7 +221,7 @@ As illustrated in [Fig. 2(a)](#Fig02), the fluid slip velocity at the wall $u_{\
 <figure>
     <img id="Fig02" src="./imgs/Figure-NavierSlipScheme.png">
     <figcaption>
-        Figure 2: The relationship between the slip coefficient $s_c$ in LBM  and the Navier slip length $l_s$ of the boundary (in lattice unit). Figure (a) represents the sketch of velocity profile near the boundary, figure (b) is the corresponding LBM representation, and figure (c) plots $l_s$ against $s_c$ for different effective LBM relaxation times $\tau_{eff} = [0.6, 1.0, 1.4]$.
+        Figure 2: The relationship between the slip coefficient $s_c$ in LBM  and the Navier slip length $l_s$ of the boundary (in lattice unit). Figure (a) represents the sketch of velocity profile near the boundary, figure (b) is the corresponding LBM representation, and figure (c) plots $l_s$ against $s_c$ for different effective LBM relaxation times $\tau_{\text{eff}} = [0.6, 1.0, 1.4]$.
     </figcaption>
 </figure>
 
@@ -241,15 +241,15 @@ Specifically, in [Fig. 2(b)](#Fig02), we have $\boldsymbol{c}_{sp}=\boldsymbol{c
 
 Based on Eq. \eqref{eqn:LBM_succi_slip},  Švec and Skoček [44]  have proposed the relationship between the macroscopic slip length $l_s$ and the mesoscopic slip coefficient $s_c$ ,
 \begin{equation}
-    s_c = \frac{l_s}{l_s + \tau_{eff} - \frac{1}{2}},
+    s_c = \frac{l_s}{l_s + \tau_{\text{eff}} - \frac{1}{2}},
     \label{eqn:slipCoef_vs_slipLen}
 \end{equation}
-where $\tau_{eff}$ denotes the effective LBM relaxation time in Eq. \eqref{eqn:LBGK} for non-Newtonian fluids. This relation is then examined in [Fig. 2(c)](#Fig02).
+where $\tau_{\text{eff}}$ denotes the effective LBM relaxation time in Eq. \eqref{eqn:LBGK} for non-Newtonian fluids. This relation is then examined in [Fig. 2(c)](#Fig02).
 For $s_c \to 0$, the slip length $l_s$ increases slowly and linearly, approximating a no-slip boundary. As $s_c$ increases further, the curve bends upward and $l_s$ diverges as $s_c \to 1$, recovering the free-slip limit through an infinite Navier slip length.
-A larger $\tau_{eff}$ shifts the entire curve upward.
+A larger $\tau_{\text{eff}}$ shifts the entire curve upward.
 
 
-For granular flow simulations, the effective LBM relaxation time $\tau_{eff}$ varies spatially according to Eq. \eqref{eqn:LBGK_gamma}, necessitating a mass-conserving definition of $\tau_{eff}$ in Eq. \eqref{eqn:slipCoef_vs_slipLen}.
+For granular flow simulations, the effective LBM relaxation time $\tau_{\text{eff}}$ varies spatially according to Eq. \eqref{eqn:LBGK_gamma}, necessitating a mass-conserving definition of $\tau_{\text{eff}}$ in Eq. \eqref{eqn:slipCoef_vs_slipLen}.
 Consider the neighboring nodes $\boldsymbol{x}$ and $\boldsymbol{x}_{sp}$ in [Fig. 2(b)](#Fig02), according to the discrete velocity directions of D2Q9 model shown in [Fig. 1](#Fig01), the corresponding boundary schemes are
 \begin{equation}
     f_{5}(\boldsymbol{x}, t+\delta_t) = (1 - s_c(\boldsymbol{x})) f_{7}^{pc} (\boldsymbol{x},t) + s_c(\boldsymbol{x}) f_{8}^{pc} (\boldsymbol{x}_{sp},t)
@@ -258,7 +258,7 @@ and
 \begin{equation}
     f_{6}(\boldsymbol{x}_{sp}, t+\delta_t) = (1 - s_c(\boldsymbol{x}_{sp})) f_{8}^{pc} (\boldsymbol{x}_{sp},t) + s_c(\boldsymbol{x}_{sp}) f_{7}^{pc} (\boldsymbol{x},t).
 \end{equation}
-To ensure mass conservation across both distribution functions, $s_c(\boldsymbol{x})$ must equal $s_c(\boldsymbol{x}_{sp})$. In this study, the effective LBM relaxation time in Eq. \eqref{eqn:slipCoef_vs_slipLen} is therefore evaluated as the average of the local effective relaxation times of the neighboring lattice nodes  $\bar{\tau}_{eff} = [\tau_{eff}(\boldsymbol{x}) + \tau_{eff}(\boldsymbol{x}_{sp})]/2$.
+To ensure mass conservation across both distribution functions, $s_c(\boldsymbol{x})$ must equal $s_c(\boldsymbol{x}_{sp})$. In this study, the effective LBM relaxation time in Eq. \eqref{eqn:slipCoef_vs_slipLen} is therefore evaluated as the average of the local effective relaxation times of the neighboring lattice nodes  $\bar{\tau}_{\text{eff}} = [\tau_{\text{eff}}(\boldsymbol{x}) + \tau_{\text{eff}}(\boldsymbol{x}_{sp})]/2$.
 
 
 The proposed continuum framework for dense granular flows has been validated in our previous work [45].
@@ -297,9 +297,9 @@ The tangent shear stiffness $k_t$ and normal shear stiffness $k_n$ are
 where $r_{ab} = 2 r_a r_b/(r_a + r_b)$. The normal contact force $\mathrm{F}_n$ and the tangential contact force $\mathrm{F}_t$ are
 \begin{equation}
 \begin{aligned}
-    \mathrm{F}_n &= \frac{2 E}{3 (1-\nu^2)} \sqrt{\frac{ r_{ab} }{2}} |\Delta_n|^{3/2} + 2 \beta_n \sqrt{m_c k_n} \tilde{u}_{n},\\
+    \mathrm{F}_n &= \frac{2 E}{3 (1-\nu^2)} \sqrt{\frac{ r_{ab} }{2}} |\Delta_n|^{3/2} - 2 \beta_n \sqrt{m_c k_n} \tilde{u}_{n},\\
     \mathrm{F}_t &= \begin{cases}
-        k_t {\Delta_t} + 2 \beta_t \sqrt{m_c k_n} \tilde{u}_{t}, &  |\mathrm{F}_t| \leq \mu_p |\mathrm{F}_n| \\
+        k_t {\Delta_t} - 2 \beta_t \sqrt{m_c k_n} \tilde{u}_{t}, &  |\mathrm{F}_t| \leq \mu_p |\mathrm{F}_n| \\
         \mu_p \mathrm{F}_n \cdot \text{sign}(\Delta_t), & |\mathrm{F}_t| > \mu_p |\mathrm{F}_n|
     \end{cases},
 \end{aligned}
@@ -517,7 +517,7 @@ Overall, the proposed boundary scheme in [Sec. 2.3](#model_formulation/mesoscopi
 <figure>
     <img id="Fig12" src="./imgs/Figure-LBM_silo_slipLength.png">
     <figcaption>
-        Figure 12: Vertical velocity magnitude $|u_y|$ versus shear rate $\dot{\gamma}$ for fluid nodes nearest to both lateral walls in LBM simulations at $t = 1.0$ s. Colored points correspond to different orifice heights $D$, and the dashed line marks the prescribed Navier slip length $l_s = 2.55 d_p$.
+        Figure 12: Vertical velocity magnitude $|u_y|$ vs shear rate $\dot{\gamma}$ for fluid nodes nearest to both lateral walls in LBM simulations at $t = 1.0$ s. Colored points correspond to different orifice heights $D$, and the dashed line marks the prescribed Navier slip length $l_s = 2.55 d_p$.
     </figcaption>
 </figure>
 
@@ -641,7 +641,7 @@ We address this question in [Sec. 4.2](#effect_of_boundary_slippage_on_silo_flow
 <figure>
     <img id="Fig17" src="./imgs/Figure-LBM-L30H300-ScalingQ-spl.png">
     <figcaption>
-        Figure 17: Scaling law for the average steady mass discharge rate $\langle Q \rangle$. (a) The $\langle Q \rangle_{\text{noslip}}$ as a function of orifice height $D$ for no-slip lateral walls. The dashed line is the Beverloo fit. (b) The $\langle Q \rangle / \langle Q \rangle_{\text{noslip}}$ versus Navier slip length $l_s$. The dashed line is the proposed fit function Eq. \eqref{eqn:Q_scaling_coef}. Error bars denote the standard deviation of the time series.
+        Figure 17: Scaling law for the average steady mass discharge rate $\langle Q \rangle$. (a) The $\langle Q \rangle_{\text{noslip}}$ as a function of orifice height $D$ for no-slip lateral walls. The dashed line is the Beverloo fit. (b) The $\langle Q \rangle / \langle Q \rangle_{\text{noslip}}$ vs Navier slip length $l_s$. The dashed line is the proposed fit function Eq. \eqref{eqn:Q_scaling_coef}. Error bars denote the standard deviation of the time series.
     </figcaption>
 </figure>
 
@@ -740,7 +740,7 @@ The detailed amount of $\Delta f_{i} (\boldsymbol{x}, t)$ is given by Körner et
 
 The free-surface boundary condition is applied to interface cell $\boldsymbol{x}$ to reconstruct the unknown distribution functions from gas cells [38], see the blue dashed arrows in [Fig. 1](#Fig01),
 \begin{equation}
-    f_{-i}(\boldsymbol{x}, t + \delta_t) = f_{i}^{eq} (\rho_A, \boldsymbol{u}_A) + f_{-i}^{eq} (\rho_A, \boldsymbol{u}_A) - f_{i}^{pc}(\boldsymbol{x}, t).
+    f_{-i}(\boldsymbol{x}, t + \delta_t) = f_{i}^{\text{eq}} (\rho_A, \boldsymbol{u}_A) + f_{-i}^{\text{eq}} (\rho_A, \boldsymbol{u}_A) - f_{i}^{pc}(\boldsymbol{x}, t).
     \tag{A3}
     \label{eqn:korner_frfee_surface_BC}
 \end{equation}
@@ -928,7 +928,7 @@ This research was developed under the support of the Guangdong basic and applied
 
 [1] K. Saleh, S. Golshan, and R. Zarghami, [Chemical Engineering Science **192**, 1011 (2018)](https://doi.org/10.1016/j.ces.2018.08.028). 
 
-[2] Gotthilf Heinrich Ludwig Hagen, in _Bericht über die zur Bekanntmachung geeigneten Verhandlungen der Königl_ (Akademie der Wissenschaften zu Berlin, 1852) pp. 35-42. 
+[2] Gotthilf Heinrich Ludwig Hagen, <b>Über den Druck und die Bewegung des trocknen Sandes</b>, in _Bericht über die zur Bekanntmachung geeigneten Verhandlungen der Königl_ (Akademie der Wissenschaften zu Berlin, 1852) pp. 35-42. 
 
 [3] W. Beverloo, H. Leniger, and J. van de Velde, [Chemical Engineering Science **15**, 260 (1961)](https://linkinghub.elsevier.com/retrieve/pii/0009250961850306). 
 
